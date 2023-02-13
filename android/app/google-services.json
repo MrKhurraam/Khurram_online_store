@@ -1,0 +1,98 @@
+{
+  "project_info": {
+    "project_number": "234831945453",
+    "project_id": "khurrammarket",
+    "storage_bucket": "khurrammarket.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:234831945453:android:0642580e690758c50036e4",
+        "android_client_info": {
+          "package_name": "com.example.khurram_store"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "234831945453-92gakroftu96733jmeqnqvu5fsbstguu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.khurram_store",
+            "certificate_hash": "9ae344f10f78cacf6eba052fdde8b5570c5e7ddf"
+          }
+        },
+        {
+          "client_id": "234831945453-598e4agcvdifeoaqjs0dkrvlcv3pmtu9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDGAUxSCMeR5aBqaEZTPWx61yZEpSAvtUI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "234831945453-598e4agcvdifeoaqjs0dkrvlcv3pmtu9.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "234831945453-0r4mefa4346fe5p6ou4r69l6l64ue6ea.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.myMarket"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:234831945453:android:f760d7acabcbbc180036e4",
+        "android_client_info": {
+          "package_name": "com.example.my_market"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "234831945453-021ma4rhi007tvm9r4kkrru25vakcgf1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.my_market",
+            "certificate_hash": "9ae344f10f78cacf6eba052fdde8b5570c5e7ddf"
+          }
+        },
+        {
+          "client_id": "234831945453-598e4agcvdifeoaqjs0dkrvlcv3pmtu9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDGAUxSCMeR5aBqaEZTPWx61yZEpSAvtUI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "234831945453-598e4agcvdifeoaqjs0dkrvlcv3pmtu9.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "234831945453-0r4mefa4346fe5p6ou4r69l6l64ue6ea.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.myMarket"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>234831945453-epsrm24rcik2uuqbraiq0o2u93vk6fv6.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.234831945453-epsrm24rcik2uuqbraiq0o2u93vk6fv6</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>234831945453-8eeuve5oidt3ns4i87jaj4djnpp5oltm.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBHw4fYsC4IKPv3umU-xjustJWjxV1K_g0</string>
+	<key>GCM_SENDER_ID</key>
+	<string>234831945453</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.khurramStore</string>
+	<key>PROJECT_ID</key>
+	<string>khurrammarket</string>
+	<key>STORAGE_BUCKET</key>
+	<string>khurrammarket.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:234831945453:ios:39c6454842d985aa0036e4</string>
+</dict>
+</plist>
