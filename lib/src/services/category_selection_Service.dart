@@ -44,4 +44,6 @@ class CategorySelectionService extends ChangeNotifier {
     }
     return subCatAmount;
   }
+
+  double get totalCost => _selectedSubCategory.getTotalPrice();
 }

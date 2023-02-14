@@ -6,9 +6,7 @@ import 'package:provider/provider.dart';
 
 import '../helpers/utils.dart';
 import '../models/category_model.dart';
-import '../widgets/category_bottom_bar.dart';
 import '../widgets/category_card.dart';
-import '../widgets/main_app_bar.dart';
 
 class CategoryListPage extends StatelessWidget {
   CategoryListPage({Key? key}) : super(key: key);
@@ -23,44 +21,38 @@ class CategoryListPage extends StatelessWidget {
       drawer: Drawer(
         child: SideMenuBar(),
       ),
-      appBar: MainAppBar(),
+      // appBar: MainAppBar(),
       body: Container(
-        child: Stack(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                Padding(
-                  padding: EdgeInsets.all(10),
-                  child: Text(
-                    "Select a category",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: 15,
-                      color: Colors.black,
-                    ),
-                  ),
+            Padding(
+              padding: EdgeInsets.all(10),
+              child: Text(
+                "Select a category",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 15,
+                  color: Colors.black,
                 ),
-                Expanded(
-                  child: ListView.builder(
-                    physics: BouncingScrollPhysics(),
-                    padding: EdgeInsets.only(bottom: 110),
-                    itemCount: categories.length,
-                    itemBuilder: (BuildContext context, index) {
-                      return CategoryCard(
-                          onCardClick: () {
-                            catSelection.selectedCategory = categories[index];
-                            Navigator.of(context)
-                                .pushNamed('/selectedcategorypage');
-                          },
-                          category: categories[index]);
-                    },
-                  ),
-                ),
-              ],
+              ),
             ),
-            Positioned(
-                bottom: 0, left: 0, right: 0, child: CategoryBottomBar()),
+            Expanded(
+              child: ListView.builder(
+                physics: BouncingScrollPhysics(),
+                padding: EdgeInsets.only(bottom: 110),
+                itemCount: categories.length,
+                itemBuilder: (BuildContext context, index) {
+                  return CategoryCard(
+                      onCardClick: () {
+                        catSelection.selectedCategory = categories[index];
+                        Utils.mainAppNav.currentState
+                            ?.pushNamed('/selectedcategorypage');
+                      },
+                      category: categories[index]);
+                },
+              ),
+            ),
           ],
         ),
       ),

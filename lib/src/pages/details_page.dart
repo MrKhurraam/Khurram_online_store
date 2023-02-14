@@ -1,10 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:khurram_store/src/models/cart_item_model.dart';
 import 'package:khurram_store/src/services/cart_service.dart';
 import 'package:provider/provider.dart';
 
 import '../helpers/app_colors.dart';
+import '../helpers/utils.dart';
+import '../models/cart_item_model.dart';
 import '../models/sub_category_model.dart';
 import '../services/category_selection_Service.dart';
 import '../widgets/category_icon.dart';
@@ -102,13 +103,23 @@ class _DetailsPageState extends State<DetailsPage> {
                                   borderRadius: BorderRadius.circular(20),
                                   color: widget.subCategory.color,
                                 ),
-                                child: Text(
-                                  '\$50.00 / lb',
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 20,
+                                child: Text.rich(TextSpan(children: [
+                                  TextSpan(
+                                    text: '${widget.subCategory.price}',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 20,
+                                    ),
                                   ),
-                                ),
+                                  TextSpan(
+                                    text:
+                                        ' / ${Utils.weightUnitToString(widget.subCategory.unit)}',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 20,
+                                    ),
+                                  ),
+                                ])),
                               )
                             ],
                           ),
@@ -171,76 +182,76 @@ class _DetailsPageState extends State<DetailsPage> {
                   children: [
                     CategoryPartList(subCategory: widget.subCategory),
                     UnitPriceWidget(),
-                    Consumer<CartService>(
-                      builder: (context, cart, child) {
-                        Widget renderedButton;
-
-                        if (!cart
-                            .isSubCategoryAddedToCart(widget.subCategory)) {
-                          renderedButton = ThemeButton(
-                            label: 'Add to Cart',
-                            icon: Icon(
-                              Icons.shopping_cart,
-                              color: Colors.white,
-                            ),
-                            onClick: () {
-                              cartService.add(
-                                CartItem(category: widget.subCategory),
-                              );
-                            },
-                          );
-                        } else {
-                          renderedButton = Container(
-                            padding: EdgeInsets.all(26),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(
-                                  "Added to Cart",
-                                  style: TextStyle(
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.bold,
-                                    color: AppColors.MAIN_COLOR,
-                                  ),
-                                ),
-                                Icon(
-                                  Icons.check_circle,
-                                  size: 30,
-                                  color: AppColors.MAIN_COLOR,
-                                ),
-                              ],
-                            ),
-                          );
-                        }
-                        return renderedButton;
-                      },
-                    ),
-                    // ThemeButton(
-                    //   onClick: () {
-                    //     cartService.add(CartItem(category: widget.subCategory));
-                    //   },
-                    //   highlight: AppColors.MAIN_COLOR,
-                    //   label: 'Add to Cart',
-                    //   icon: Icon(
-                    //     Icons.shopping_cart,
-                    //     color: Colors.white,
-                    //   ),
-                    // ),
-                    ThemeButton(
-                      onClick: () {
-                        Navigator.of(context).pushNamed('/mappage');
-                      },
-                      label: 'Product Location',
-                      icon: Icon(
-                        Icons.location_pin,
-                        color: Colors.white,
-                      ),
-                      color: AppColors.DARK_GREEN,
-                      highlight: AppColors.DARKER_GREEN,
-                    ),
                   ],
                 ),
               ),
+            ),
+          ],
+        ),
+      ),
+      bottomNavigationBar: Container(
+        height: 140,
+        // color: Colors.red,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.end,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Consumer<CartService>(
+              builder: (context, cart, child) {
+                Widget renderedButton;
+
+                if (!cart.isSubCategoryAddedToCart(widget.subCategory)) {
+                  renderedButton = Consumer<CategorySelectionService>(
+                      builder: (context, cat, child) {
+                    print(
+                        "cat.selectedSubCategory.amount = ${cat.selectedSubCategory.amount}");
+                    return ThemeButton(
+                      bottomMargin: 10,
+                      label: 'Add to Cart',
+                      icon: Icon(
+                        Icons.shopping_cart,
+                        color: Colors.white,
+                      ),
+                      onClick: () {
+                        cat.selectedSubCategory.amount != 0
+                            ? cartService.add(
+                                CartItem(category: widget.subCategory),
+                              )
+                            : null;
+                      },
+                    );
+                  });
+                } else {
+                  renderedButton = ThemeButton(
+                    color: Colors.grey.shade100,
+                    bottomMargin: 10,
+                    highlight: Colors.grey[600],
+                    labelColor: AppColors.MAIN_COLOR,
+                    label: 'Added to Cart',
+                    icon: Icon(
+                      Icons.check_circle,
+                      size: 25,
+                      color: AppColors.MAIN_COLOR,
+                    ),
+                    onClick: () {},
+                  );
+                }
+                return renderedButton;
+              },
+            ),
+            ThemeButton(
+              bottomMargin: 10,
+              onClick: () {
+                Utils.mainAppNav.currentState?.pushNamed('/mappage');
+              },
+              label: 'Product Location',
+              icon: Icon(
+                Icons.location_pin,
+                color: Colors.white,
+              ),
+              color: AppColors.DARK_GREEN,
+              highlight: AppColors.DARKER_GREEN,
             ),
           ],
         ),

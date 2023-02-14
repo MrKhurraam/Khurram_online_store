@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 
 import '../helpers/app_colors.dart';
 import '../helpers/icon_helper.dart';
+import '../helpers/utils.dart';
 import '../services/login_service.dart';
 import '../widgets/icon_font.dart';
 import '../widgets/theme_button.dart';
@@ -75,19 +76,19 @@ class WelcomePage extends StatelessWidget {
                   ),
                   ThemeButton(
                     onClick: () {
-                      Navigator.of(context).pushNamed('/categorylistpage');
+                      Utils.mainAppNav.currentState?.pushNamed('/mainpage');
                     },
                     label: 'Try Now',
                     color: AppColors.MAIN_COLOR,
                     highlight: Colors.green[900],
                   ),
                   ThemeButton(
-
                     label: 'Onboarding',
                     color: AppColors.DARK_GREEN,
                     highlight: Colors.green[900],
                     onClick: () {
-                      Navigator.of(context).pushNamed('/onboardingpage');
+                      Utils.mainAppNav.currentState
+                          ?.pushNamed('/onboardingpage');
                     },
                   ),
                   ThemeButton(
@@ -100,7 +101,7 @@ class WelcomePage extends StatelessWidget {
                     onClick: () async {
                       bool success = await loginService.signInWithGoogle();
                       if (success) {
-                        Navigator.of(context).pushNamed('/categorylistpage');
+                        Utils.mainAppNav.currentState?.pushNamed('/mainpage');
                       }
                     },
                   ),

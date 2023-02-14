@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 
 import '../helpers/app_colors.dart';
 import '../helpers/icon_helper.dart';
+import '../helpers/utils.dart';
 import 'icon_font.dart';
 import 'user_profile_header.dart';
 
 class MainAppBar extends StatefulWidget implements PreferredSizeWidget {
-  MainAppBar(
-      {Key? key,
-      this.themeColor = AppColors.MAIN_COLOR,
-      this.showProfilePic = true})
+  MainAppBar({Key? key,
+    this.themeColor = AppColors.MAIN_COLOR,
+    this.showProfilePic = true})
       : super(key: key);
 
   Color? themeColor;
@@ -28,8 +28,8 @@ class _MainAppBarState extends State<MainAppBar> {
     return AppBar(
       title: GestureDetector(
         onTap: () {
-          Navigator.of(context)
-              .popUntil((route) => route.settings.name == '/categorylistpage');
+          Utils.mainAppNav.currentState
+              ?.popUntil((route) => route.settings.name == '/mainpage');
         },
         child: IconFont(
           size: 40,

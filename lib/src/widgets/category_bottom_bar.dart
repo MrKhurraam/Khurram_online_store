@@ -3,6 +3,7 @@ import 'package:khurram_store/src/services/cart_service.dart';
 import 'package:provider/provider.dart';
 
 import '../helpers/app_colors.dart';
+import '../helpers/utils.dart';
 
 class CategoryBottomBar extends StatelessWidget {
   const CategoryBottomBar({Key? key}) : super(key: key);
@@ -10,14 +11,16 @@ class CategoryBottomBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 100,
-      decoration: BoxDecoration(color: Colors.white, boxShadow: [
-        BoxShadow(
-          color: Colors.black.withOpacity(0.9),
-          offset: Offset.zero,
-          blurRadius: 20,
-        ),
-      ]),
+      height: 70,
+      decoration: BoxDecoration(color: Colors.white,
+          // color: AppColors.MAIN_COLOR,
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.2),
+              offset: Offset.zero,
+              blurRadius: 10,
+            ),
+          ]),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
@@ -27,9 +30,12 @@ class CategoryBottomBar extends StatelessWidget {
               child: IconButton(
                 splashColor: Colors.grey[100],
                 highlightColor: Colors.grey[100],
-                onPressed: () {},
+                onPressed: () {
+                  Utils.mainListNav.currentState!
+                      .pushReplacementNamed('/mainpage/categorylistpage');
+                },
                 icon: Icon(
-                  Icons.favorite,
+                  Icons.list,
                   color: AppColors.MAIN_COLOR,
                 ),
               ),
@@ -42,11 +48,14 @@ class CategoryBottomBar extends StatelessWidget {
               child: InkWell(
                   splashColor: Colors.grey[100],
                   highlightColor: Colors.grey[100],
-                  onTap: () {},
+                  onTap: () {
+                    Utils.mainListNav.currentState!
+                        .pushReplacementNamed('/mainpage/shoppinglistpage');
+                  },
                   child: Container(
                     padding: EdgeInsets.all(12),
                     child:
-                    Consumer<CartService>(builder: (context, cart, child) {
+                        Consumer<CartService>(builder: (context, cart, child) {
                       return Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.center,
@@ -58,12 +67,14 @@ class CategoryBottomBar extends StatelessWidget {
                           Visibility(
                             visible: cart.items.length > 0,
                             child: Container(
-
                               margin: EdgeInsets.only(left: 5),
                               child: Text(
-                                cart.items.length.toString(), style: TextStyle(
-                                fontSize: 15, color: AppColors.MAIN_COLOR,
-                              ),),
+                                cart.items.length.toString(),
+                                style: TextStyle(
+                                  fontSize: 15,
+                                  color: AppColors.MAIN_COLOR,
+                                ),
+                              ),
                             ),
                           ),
                         ],
@@ -72,16 +83,18 @@ class CategoryBottomBar extends StatelessWidget {
                   )),
             ),
           ),
-
           ClipOval(
             child: Material(
               color: Colors.white,
               child: IconButton(
                 splashColor: Colors.grey[100],
                 highlightColor: Colors.grey[100],
-                onPressed: () {},
+                onPressed: () {
+                  Utils.mainListNav.currentState!
+                      .pushReplacementNamed('/mainpage/favoritespage');
+                },
                 icon: Icon(
-                  Icons.pin_drop,
+                  Icons.favorite,
                   color: AppColors.MAIN_COLOR,
                 ),
               ),
@@ -93,7 +106,10 @@ class CategoryBottomBar extends StatelessWidget {
               child: IconButton(
                 splashColor: Colors.grey[100],
                 highlightColor: Colors.grey[100],
-                onPressed: () {},
+                onPressed: () {
+                  Utils.mainListNav.currentState!
+                      .pushReplacementNamed('/mainpage/settingpage');
+                },
                 icon: Icon(
                   Icons.settings,
                   color: AppColors.MAIN_COLOR,

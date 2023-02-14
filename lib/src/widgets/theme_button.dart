@@ -14,6 +14,8 @@ class ThemeButton extends StatelessWidget {
       this.highlight = AppColors.HIGHILIGHT_DEFAULT,
       this.icon,
       this.buttonWidth,
+      this.topMargin: 20,
+      this.bottomMargin: 20,
       this.borderWidth = 8})
       : super(key: key);
 
@@ -22,12 +24,13 @@ class ThemeButton extends StatelessWidget {
   Color? color, borderColor, labelColor, highlight;
   Widget? icon;
   double? borderWidth, buttonWidth;
+  double topMargin, bottomMargin;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       width: buttonWidth ?? MediaQuery.of(context).size.width,
-      margin: EdgeInsets.only(left: 20, right: 20, bottom: 20),
+      margin: EdgeInsets.only(left: 20, right: 20, bottom: this.bottomMargin),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(50),
         child: Material(
@@ -39,7 +42,8 @@ class ThemeButton extends StatelessWidget {
               this.onClick();
             },
             child: Container(
-              padding: EdgeInsets.all(15),
+              padding:
+                  EdgeInsets.only(left: 15, right: 15, top: 10, bottom: 10),
               child: this.icon == null
                   ? Text(
                       this.label.toString(),

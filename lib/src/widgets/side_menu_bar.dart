@@ -5,6 +5,7 @@ import 'package:khurram_store/src/widgets/icon_font.dart';
 import 'package:provider/provider.dart';
 
 import '../helpers/icon_helper.dart';
+import '../helpers/utils.dart';
 
 class SideMenuBar extends StatelessWidget {
   const SideMenuBar({Key? key}) : super(key: key);
@@ -26,11 +27,11 @@ class SideMenuBar extends StatelessWidget {
                 onPressed: () async {
                   if (userLoggedIn) {
                     await loginService.signOut();
-                    Navigator.of(context).pushNamed('/welcomepage');
+                    Utils.mainAppNav.currentState?.pushNamed('/welcomepage');
                   } else {
                     bool success = await loginService.signInWithGoogle();
                     if (success) {
-                      Navigator.of(context).pushNamed('/categorylistpage');
+                      Utils.mainAppNav.currentState?.pushNamed('/mainpage');
                     }
                   }
                 },

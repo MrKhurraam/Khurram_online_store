@@ -10,6 +10,9 @@ import 'icon_helper.dart';
 import 'unitenums.dart';
 
 class Utils {
+  static GlobalKey<NavigatorState> mainListNav = GlobalKey();
+  static GlobalKey<NavigatorState> mainAppNav = GlobalKey();
+
   static List<OnBoardingContent> getOnboarding() {
     return [
       OnBoardingContent(
@@ -57,6 +60,7 @@ class Utils {
             name: 'Hen',
             imgName: 'cat1_2',
             icon: IconFontHelper.MEATS,
+            price: 10,
             parts: [
               CategoryPart(
                   name: 'Ham', imgName: 'cat1_2_p1', isSelected: false),
@@ -74,6 +78,7 @@ class Utils {
             color: AppColors.MEATS,
             name: 'Cow',
             imgName: 'cat1_3',
+            price: 10,
             icon: IconFontHelper.MEATS,
             parts: [
               CategoryPart(
@@ -94,6 +99,7 @@ class Utils {
             color: AppColors.MEATS,
             name: 'Turkey',
             imgName: 'cat1_4',
+            price: 40,
             icon: IconFontHelper.MEATS,
             parts: [
               CategoryPart(
@@ -162,6 +168,7 @@ class Utils {
             color: AppColors.FRUITS,
             name: 'Kiwi',
             imgName: 'cat2_1',
+            price: 15,
             icon: IconFontHelper.FRUITS,
             parts: [
               CategoryPart(
@@ -182,6 +189,7 @@ class Utils {
             color: AppColors.FRUITS,
             name: 'Banana',
             imgName: 'cat2_2',
+            price: 5,
             icon: IconFontHelper.FRUITS,
             parts: [
               CategoryPart(

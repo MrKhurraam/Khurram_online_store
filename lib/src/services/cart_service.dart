@@ -20,4 +20,27 @@ class CartService extends ChangeNotifier {
         ? _items.any((CartItem element) => element.category.name == subCat.name)
         : false;
   }
+
+  void remove(CartItem item) {
+    _items.remove(item);
+    notifyListeners();
+  }
+
+  void removeAll() {
+    _items.clear();
+    notifyListeners();
+  }
+
+  getCategoryFromCart(SubCategory cat) {
+    SubCategory? subCat = cat;
+    if (_items.length > 0 &&
+        _items.any((CartItem item) => item.category.name == cat.name)) {
+      CartItem cartItem =
+          _items.firstWhere((CartItem item) => item.category.name == cat.name);
+      if (cartItem != null) {
+        subCat = cartItem.category as SubCategory?;
+      }
+    }
+    return subCat;
+  }
 }

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:khurram_store/src/services/cart_service.dart';
 import 'package:provider/provider.dart';
 
+import '../helpers/utils.dart';
 import '../models/category_model.dart';
 import '../services/category_selection_Service.dart';
 import '../widgets/category_icon.dart';
@@ -16,6 +18,9 @@ class SelectedCategoryPage extends StatelessWidget {
     final catSelection =
         Provider.of<CategorySelectionService>(context, listen: false);
     selectedCategory = catSelection.selectedCategory;
+
+    final cartService = Provider.of<CartService>(context, listen: false);
+
     return Scaffold(
       appBar: MainAppBar(),
       body: Container(
@@ -52,9 +57,12 @@ class SelectedCategoryPage extends StatelessWidget {
                   (index) {
                     return GestureDetector(
                       onTap: () {
-                        catSelection.selectedSubCategory =
+                        var subCat =
                             this.selectedCategory.subCategories![index];
-                        Navigator.of(context).pushNamed('/detailspage');
+                        catSelection.selectedSubCategory =
+                            cartService.getCategoryFromCart(subCat);
+                        Utils.mainAppNav.currentState
+                            ?.pushNamed('/detailspage');
                       },
                       child: Container(
                         child: Column(

@@ -50,74 +50,76 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
                 },
                 children: List.generate(
                   _content.length,
-                  (index) => Container(
-                    padding: EdgeInsets.only(
-                        left: 40, top: 40, right: 40, bottom: 20),
-                    margin: EdgeInsets.only(
-                        left: 40, right: 40, top: 40, bottom: 20),
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(50),
-                      boxShadow: [
-                        BoxShadow(
-                          color: AppColors.MAIN_COLOR.withOpacity(0.3),
-                          blurRadius: 20,
-                          offset: Offset.zero,
-                        )
-                      ],
-                    ),
-                    child: Column(
-                      children: [
-                        Expanded(
-                          child: Container(
-                            // color: Colors.orange.shade100,
-                            child: Column(
-                              // mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: [
-                                Align(
-                                  alignment: Alignment.topRight,
-                                  child: IconFont(
-                                    color: AppColors.MAIN_COLOR,
-                                    iconName: IconFontHelper.LOGO,
-                                    size: 40,
-                                  ),
-                                ),
-                                Image.asset(
-                                    'assets/imgs/${_content[index].img}.png'),
-                                SizedBox(
-                                  height:
+                      (index) =>
+                      Container(
+                        padding: EdgeInsets.only(
+                            left: 40, top: 40, right: 40, bottom: 20),
+                        margin: EdgeInsets.only(
+                            left: 40, right: 40, top: 40, bottom: 20),
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(50),
+                          boxShadow: [
+                            BoxShadow(
+                              color: AppColors.MAIN_COLOR.withOpacity(0.3),
+                              blurRadius: 20,
+                              offset: Offset.zero,
+                            )
+                          ],
+                        ),
+                        child: Column(
+                          children: [
+                            Expanded(
+                              child: Container(
+                                // color: Colors.orange.shade100,
+                                child: Column(
+                                  // mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                  children: [
+                                    Align(
+                                      alignment: Alignment.topRight,
+                                      child: IconFont(
+                                        color: AppColors.MAIN_COLOR,
+                                        iconName: IconFontHelper.LOGO,
+                                        size: 40,
+                                      ),
+                                    ),
+                                    Image.asset(
+                                        'assets/imgs/${_content[index]
+                                            .img}.png'),
+                                    SizedBox(
+                                      height:
                                       index == _content.length - 1 ? 20 : 40,
+                                    ),
+                                    Text(
+                                      '${_content[index].message}',
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(
+                                          color: AppColors.MAIN_COLOR,
+                                          fontSize: 20),
+                                    ),
+                                  ],
                                 ),
-                                Text(
-                                  '${_content[index].message}',
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                      color: AppColors.MAIN_COLOR,
-                                      fontSize: 20),
-                                ),
-                              ],
+                              ),
                             ),
-                          ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Visibility(
+                              visible: index == _content.length - 1,
+                              child: ThemeButton(
+                                buttonWidth: 200,
+                                onClick: () {
+                                  Utils.mainAppNav.currentState
+                                      ?.pushNamed('/mainpage');
+                                },
+                                label: 'Enter Now!',
+                                color: AppColors.DARK_GREEN,
+                                highlight: AppColors.DARKER_GREEN,
+                              ),
+                            )
+                          ],
                         ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        Visibility(
-                          visible: index == _content.length - 1,
-                          child: ThemeButton(
-                            buttonWidth: 200,
-                            onClick: () {
-                              Navigator.of(context)
-                                  .pushNamed('/categorylistpage');
-                            },
-                            label: 'Enter Now!',
-                            color: AppColors.DARK_GREEN,
-                            highlight: AppColors.DARKER_GREEN,
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
+                      ),
                 ),
               ),
             ),
@@ -125,27 +127,33 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: List.generate(
                 _content.length,
-                (index) => GestureDetector(
-                  onTap: () {
-                    _controller.animateTo(
-                        MediaQuery.of(context).size.width * index,
-                        duration: Duration(milliseconds: 500),
-                        curve: Curves.easeInOut);
-                  },
-                  child: Container(
-                    margin: EdgeInsets.all(10),
-                    height: 20,
-                    width: 20,
-                    decoration: BoxDecoration(
-                        color: AppColors.MAIN_COLOR,
-                        borderRadius: BorderRadius.circular(50),
-                        border: Border.all(
-                            width: 6,
-                            color: index == pageIndex
-                                ? Color(0xFFC1E09E)
-                                : Theme.of(context).canvasColor)),
-                  ),
-                ),
+                    (index) =>
+                    GestureDetector(
+                      onTap: () {
+                        _controller.animateTo(
+                            MediaQuery
+                                .of(context)
+                                .size
+                                .width * index,
+                            duration: Duration(milliseconds: 500),
+                            curve: Curves.easeInOut);
+                      },
+                      child: Container(
+                        margin: EdgeInsets.all(10),
+                        height: 20,
+                        width: 20,
+                        decoration: BoxDecoration(
+                            color: AppColors.MAIN_COLOR,
+                            borderRadius: BorderRadius.circular(50),
+                            border: Border.all(
+                                width: 6,
+                                color: index == pageIndex
+                                    ? Color(0xFFC1E09E)
+                                    : Theme
+                                    .of(context)
+                                    .canvasColor)),
+                      ),
+                    ),
               ),
             ),
             SizedBox(
@@ -154,7 +162,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
             ThemeButton(
               buttonWidth: 200,
               onClick: () {
-                Navigator.of(context).pushNamed('/categorylistpage');
+                Utils.mainAppNav.currentState?.pushNamed('/mainpage');
               },
               label: 'Try Now',
             ),

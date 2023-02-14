@@ -16,7 +16,7 @@ class SubCategory extends Category {
 
   SubCategory(
       {this.parts = const [],
-      this.price = 0.0,
+      this.price = 15.0,
       this.unit = WeightUnits.Lb,
       this.amount = 0,
       required String name,
