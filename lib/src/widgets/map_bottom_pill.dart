@@ -1,16 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-import '../helpers/app_colors.dart';
-import '../helpers/icon_helper.dart';
 import '../models/sub_category_model.dart';
+import '../services/category_selection_Service.dart';
 import 'category_icon.dart';
 
 class MapBottomPill extends StatelessWidget {
-  MapBottomPill({Key? key, required this.subCategory}) : super(key: key);
-  SubCategory subCategory;
+  MapBottomPill({Key? key}) : super(key: key);
+  late SubCategory subCategory;
 
   @override
   Widget build(BuildContext context) {
+    final catSelection =
+        Provider.of<CategorySelectionService>(context, listen: false);
+    subCategory = catSelection.selectedSubCategory;
+
     return Container(
         padding: EdgeInsets.all(20),
         margin: EdgeInsets.all(15),

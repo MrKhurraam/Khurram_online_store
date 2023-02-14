@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:khurram_store/src/pages/category_list_pages.dart';
+import 'package:khurram_store/src/pages/details_page.dart';
+import 'package:khurram_store/src/pages/map_page.dart';
+import 'package:khurram_store/src/pages/on_boarding_page.dart';
+import 'package:khurram_store/src/pages/selected_category_page.dart';
 
-import 'helpers/utils.dart';
 import 'pages/splash_page.dart';
 import 'pages/welcome_page.dart';
 
@@ -9,10 +13,23 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(theme: ThemeData(fontFamily: 'Raleway'),
+    return MaterialApp(
+      theme: ThemeData(fontFamily: 'Raleway'),
       debugShowCheckedModeBanner: false,
-      home: // MapPage()
-      SplashPage(duration: 3, goToPage: WelcomePage()),
+      // home: SplashPage(
+      //   duration: 3,
+      //   goToPage: WelcomePage(),
+      // ),
+      initialRoute: '/',
+      routes: {
+        '/': (context) => SplashPage(duration: 3, goToPage: WelcomePage()),
+        '/welcomepage': (context) => WelcomePage(),
+        '/categorylistpage': (context) => CategoryListPage(),
+        '/selectedcategorypage': (context) => SelectedCategoryPage(),
+        '/detailspage': (context) => DetailsPage(),
+        '/mappage': (context) => MapPage(),
+        '/onboardingpage': (context) => OnBoardingPage(),
+      },
     );
   }
 }

@@ -13,6 +13,7 @@ class ThemeButton extends StatelessWidget {
       this.labelColor = Colors.white,
       this.highlight = AppColors.HIGHILIGHT_DEFAULT,
       this.icon,
+      this.buttonWidth,
       this.borderWidth = 8})
       : super(key: key);
 
@@ -20,11 +21,12 @@ class ThemeButton extends StatelessWidget {
   Function onClick;
   Color? color, borderColor, labelColor, highlight;
   Widget? icon;
-  double? borderWidth;
+  double? borderWidth, buttonWidth;
 
   @override
   Widget build(BuildContext context) {
     return Container(
+      width: buttonWidth ?? MediaQuery.of(context).size.width,
       margin: EdgeInsets.only(left: 20, right: 20, bottom: 20),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(50),

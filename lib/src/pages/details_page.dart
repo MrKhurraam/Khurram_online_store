@@ -1,34 +1,36 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../helpers/app_colors.dart';
-import '../models/category_part_model.dart';
 import '../models/sub_category_model.dart';
+import '../services/category_selection_Service.dart';
 import '../widgets/category_icon.dart';
 import '../widgets/category_parts_list.dart';
 import '../widgets/main_app_bar.dart';
 import '../widgets/theme_button.dart';
 import '../widgets/unit_price_widget.dart';
-import 'map_page.dart';
 
 class DetailsPage extends StatefulWidget {
-  DetailsPage({Key? key, required this.subCategory}) : super(key: key);
+  DetailsPage({
+    Key? key,
+  }) : super(key: key);
 
-  SubCategory subCategory;
+  late SubCategory subCategory;
 
   @override
   State<DetailsPage> createState() => _DetailsPageState();
 }
 
 class _DetailsPageState extends State<DetailsPage> {
-
   @override
   Widget build(BuildContext context) {
+    final catSelection =
+        Provider.of<CategorySelectionService>(context, listen: false);
+    widget.subCategory = catSelection.selectedSubCategory;
+
     double w = MediaQuery.of(context).size.width;
     double h = MediaQuery.of(context).size.height;
-    print("h = ${(h/h)*100}");
-    print("h = $w");
-
 
     return Scaffold(
       body: Container(
@@ -40,7 +42,7 @@ class _DetailsPageState extends State<DetailsPage> {
               child: Stack(
                 children: [
                   Container(
-                    height: 0.35*h,
+                    height: 0.35 * h,
                     decoration: BoxDecoration(
                       image: DecorationImage(
                           image: AssetImage('assets/imgs/' +
@@ -90,7 +92,8 @@ class _DetailsPageState extends State<DetailsPage> {
                                 height: 10,
                               ),
                               Container(
-                                padding: EdgeInsets.only(left: 10,right: 10,top: 5,bottom: 5),
+                                padding: EdgeInsets.only(
+                                    left: 10, right: 10, top: 5, bottom: 5),
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(20),
                                   color: widget.subCategory.color,
@@ -126,12 +129,16 @@ class _DetailsPageState extends State<DetailsPage> {
                           ),
                         ],
                       ),
-                      child: Row(crossAxisAlignment: CrossAxisAlignment.center,
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Text(
                             '3',
                             style: TextStyle(fontSize: 15, color: Colors.white),
-                          ),SizedBox(width: 5,),
+                          ),
+                          SizedBox(
+                            width: 5,
+                          ),
                           Icon(
                             Icons.shopping_cart,
                             color: Colors.white,
@@ -166,12 +173,7 @@ class _DetailsPageState extends State<DetailsPage> {
                     ),
                     ThemeButton(
                       onClick: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => MapPage(
-                                      subCategory: widget.subCategory,
-                                    )));
+                        Navigator.of(context).pushNamed('/mappage');
                       },
                       label: 'Product Location',
                       icon: Icon(

@@ -1,9 +1,13 @@
 import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:provider/provider.dart';
+
 import '../helpers/utils.dart';
 import '../models/sub_category_model.dart';
+import '../services/category_selection_Service.dart';
 import '../widgets/main_app_bar.dart';
 import '../widgets/map_bottom_pill.dart';
 import '../widgets/map_user_badge.dart';
@@ -17,8 +21,8 @@ const double PIN_VISIBLE_POSITION = 20;
 const double PIN_INVISIBLE_POSITION = -220;
 
 class MapPage extends StatefulWidget {
-  MapPage({Key? key, required this.subCategory}) : super(key: key);
-  SubCategory subCategory;
+  MapPage({Key? key}) : super(key: key);
+  late SubCategory subCategory;
 
   @override
   State<MapPage> createState() => _MapPageState();
@@ -86,6 +90,10 @@ class _MapPageState extends State<MapPage> {
 
   @override
   Widget build(BuildContext context) {
+    final catSelection =
+        Provider.of<CategorySelectionService>(context, listen: false);
+    widget.subCategory = catSelection.selectedSubCategory;
+
     this.setSourceAndDestinationMarkerIcon(context);
 
     CameraPosition initialCameraPosition = CameraPosition(
@@ -134,7 +142,7 @@ class _MapPageState extends State<MapPage> {
               right: 0,
               duration: Duration(milliseconds: 500),
               curve: Curves.easeInOut,
-              child: MapBottomPill(subCategory: widget.subCategory),
+              child: MapBottomPill(),
             ),
             Positioned(
               top: 0,

@@ -19,7 +19,7 @@ class Utils {
           message: 'Fresh and healthy meats and sausages for your delight',
           img: 'onboard2'),
       OnBoardingContent(
-          message: 'Buy them from the comfort of your mobile device',
+          message: 'Buy them from the comfort of your \nmobile device',
           img: 'onboard3')
     ];
   }

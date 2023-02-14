@@ -1,13 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:khurram_store/src/services/category_selection_Service.dart';
+import 'package:khurram_store/src/widgets/side_menu_bar.dart';
+import 'package:provider/provider.dart';
+
 import '../helpers/utils.dart';
 import '../models/category_model.dart';
 import '../widgets/category_bottom_bar.dart';
 import '../widgets/category_card.dart';
-import '../widgets/category_icon.dart';
-import '../widgets/icon_font.dart';
 import '../widgets/main_app_bar.dart';
-import 'selected_category_page.dart';
 
 class CategoryListPage extends StatelessWidget {
   CategoryListPage({Key? key}) : super(key: key);
@@ -16,8 +17,12 @@ class CategoryListPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final catSelection =
+        Provider.of<CategorySelectionService>(context, listen: false);
     return Scaffold(
-      drawer: Drawer(),
+      drawer: Drawer(
+        child: SideMenuBar(),
+      ),
       appBar: MainAppBar(),
       body: Container(
         child: Stack(
@@ -30,7 +35,8 @@ class CategoryListPage extends StatelessWidget {
                   child: Text(
                     "Select a category",
                     textAlign: TextAlign.center,
-                    style: TextStyle(fontSize: 15,
+                    style: TextStyle(
+                      fontSize: 15,
                       color: Colors.black,
                     ),
                   ),
@@ -42,14 +48,9 @@ class CategoryListPage extends StatelessWidget {
                     itemBuilder: (BuildContext context, index) {
                       return CategoryCard(
                           onCardClick: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => SelectedCategoryPage(
-                                  selectedCategory: this.categories[index],
-                                ),
-                              ),
-                            );
+                            catSelection.selectedCategory = categories[index];
+                            Navigator.of(context)
+                                .pushNamed('/selectedcategorypage');
                           },
                           category: categories[index]);
                     },

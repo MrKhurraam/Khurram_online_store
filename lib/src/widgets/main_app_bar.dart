@@ -26,17 +26,25 @@ class _MainAppBarState extends State<MainAppBar> {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      title: IconFont(
-        size: 40,
-        color: widget.themeColor,
-        iconName: IconFontHelper.LOGO,
+      title: GestureDetector(
+        onTap: () {
+          Navigator.of(context)
+              .popUntil((route) => route.settings.name == '/categorylistpage');
+        },
+        child: Center(
+          child: IconFont(
+            size: 40,
+            color: widget.themeColor,
+            iconName: IconFontHelper.LOGO,
+          ),
+        ),
       ),
       backgroundColor: Colors.transparent,
       elevation: 0,
       iconTheme: IconThemeData(color: widget.themeColor),
       centerTitle: true,
       actions: [
-      UserProfileHeader(showProfilePic: widget.showProfilePic),
+        UserProfileHeader(showProfilePic: widget.showProfilePic),
       ],
     );
   }

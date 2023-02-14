@@ -6,16 +6,13 @@ import '../helpers/icon_helper.dart';
 import '../services/login_service.dart';
 import '../widgets/icon_font.dart';
 import '../widgets/theme_button.dart';
-import 'category_list_pages.dart';
-import 'on_boarding_page.dart';
 
 class WelcomePage extends StatelessWidget {
   const WelcomePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final loginService =
-    Provider.of<LoginService>(context, listen: false);
+    final loginService = Provider.of<LoginService>(context, listen: false);
 
     return Scaffold(
       body: Container(
@@ -77,43 +74,36 @@ class WelcomePage extends StatelessWidget {
                     height: 40,
                   ),
                   ThemeButton(
-                    onClick: () {},
+                    onClick: () {
+                      Navigator.of(context).pushNamed('/categorylistpage');
+                    },
                     label: 'Try Now',
                     color: AppColors.MAIN_COLOR,
                     highlight: Colors.green[900],
                   ),
                   ThemeButton(
-                    onClick: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => OnBoardingPage()),
-                      );
-                    },
+
                     label: 'Onboarding',
                     color: AppColors.DARK_GREEN,
                     highlight: Colors.green[900],
+                    onClick: () {
+                      Navigator.of(context).pushNamed('/onboardingpage');
+                    },
                   ),
                   ThemeButton(
-                    onClick: () async {
-                      bool success = await loginService.signInWithGoogle();
-                      if (success) {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => CategoryListPage()),
-                        );
-                      }
-                    },
                     label: 'Login',
                     labelColor: AppColors.MAIN_COLOR,
                     color: Colors.transparent,
                     highlight: AppColors.MAIN_COLOR.withOpacity(0.5),
                     borderColor: AppColors.MAIN_COLOR,
                     borderWidth: 4,
+                    onClick: () async {
+                      bool success = await loginService.signInWithGoogle();
+                      if (success) {
+                        Navigator.of(context).pushNamed('/categorylistpage');
+                      }
+                    },
                   ),
-
-
                 ],
               ),
             ),

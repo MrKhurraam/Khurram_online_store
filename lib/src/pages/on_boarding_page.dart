@@ -7,7 +7,6 @@ import '../models/on_boarding_content.dart';
 import '../widgets/icon_font.dart';
 import '../widgets/main_app_bar.dart';
 import '../widgets/theme_button.dart';
-import 'category_list_pages.dart';
 
 class OnBoardingPage extends StatefulWidget {
   const OnBoardingPage({Key? key}) : super(key: key);
@@ -51,7 +50,8 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
                 children: List.generate(
                   _content.length,
                   (index) => Container(
-                    padding: EdgeInsets.only(left: 40,top: 40,right: 40,bottom: 20),
+                    padding: EdgeInsets.only(
+                        left: 40, top: 40, right: 40, bottom: 20),
                     margin: EdgeInsets.only(
                         left: 40, right: 40, top: 40, bottom: 20),
                     decoration: BoxDecoration(
@@ -68,39 +68,42 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
                     child: Column(
                       children: [
                         Expanded(
-                          child: Column(
-                            children: [
-                              Align(
-                                alignment: Alignment.topRight,
-                                child: IconFont(
-                                  color: AppColors.MAIN_COLOR,
-                                  iconName: IconFontHelper.LOGO,
-                                  size: 40,
+                          child: Container(
+                            // color: Colors.orange.shade100,
+                            child: Column(
+                              // mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: [
+                                Align(
+                                  alignment: Alignment.topRight,
+                                  child: IconFont(
+                                    color: AppColors.MAIN_COLOR,
+                                    iconName: IconFontHelper.LOGO,
+                                    size: 40,
+                                  ),
                                 ),
-                              ),
-                              Image.asset(
-                                  'assets/imgs/${_content[index].img}.png'),
-                              SizedBox(
-                                height: 40,
-                              ),
-                              Text(
-                                '${_content[index].message}',
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                    color: AppColors.MAIN_COLOR,fontSize: 15),
-                              ),
-                            ],
+                                Image.asset(
+                                    'assets/imgs/${_content[index].img}.png'),
+                                SizedBox(
+                                  height: 40,
+                                ),
+                                Text(
+                                  '${_content[index].message}',
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                      color: AppColors.MAIN_COLOR,
+                                      fontSize: 20),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                         Visibility(
                           visible: index == _content.length - 1,
                           child: ThemeButton(
+                            buttonWidth: 200,
                             onClick: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => CategoryListPage()),
-                              );
+                              Navigator.of(context)
+                                  .pushNamed('/categorylistpage');
                             },
                             label: 'Enter Now!',
                             color: AppColors.DARK_GREEN,
@@ -144,11 +147,9 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
               height: 20,
             ),
             ThemeButton(
+              buttonWidth: 200,
               onClick: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => CategoryListPage()),
-                );
+                Navigator.of(context).pushNamed('/categorylistpage');
               },
               label: 'Try Now',
             ),
