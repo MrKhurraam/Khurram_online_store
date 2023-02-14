@@ -15,18 +15,20 @@ class CategoryPartList extends StatefulWidget {
 class _CategoryPartListState extends State<CategoryPartList> {
   @override
   Widget build(BuildContext context) {
+    double w = MediaQuery.of(context).size.width;
+    double h = MediaQuery.of(context).size.height;
     return Column(
       children: [
         Padding(
           padding: const EdgeInsets.only(top: 20.0, left: 20, right: 20),
           child: Text(
-            'Seleccione la parte desea:',
+            'Select the part you want:',
             style: TextStyle(),
           ),
         ),
         Container(
-          height: 200,
-          child: ListView.builder(
+          height: 170,
+          child: ListView.builder(shrinkWrap: true,
             scrollDirection: Axis.horizontal,
             itemCount: widget.subCategory.parts.length,
             itemBuilder: (context, index) => GestureDetector(
@@ -42,7 +44,7 @@ class _CategoryPartListState extends State<CategoryPartList> {
                 children: [
                   Container(
                     margin: EdgeInsets.all(15),
-                    height: 150,
+                    height: 120,
                     width: 120,
                     decoration: BoxDecoration(
                         border: widget.subCategory.parts[index].isSelected

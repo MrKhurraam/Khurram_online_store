@@ -32,7 +32,7 @@ class SelectedCategoryPage extends StatelessWidget {
                   '${this.selectedCategory.name}',
                   style: TextStyle(
                     color: this.selectedCategory.color,
-                    fontSize: 20,
+                    fontSize: 22,fontWeight: FontWeight.w500
                   ),
                 ),
               ],

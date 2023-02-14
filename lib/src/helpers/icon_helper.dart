@@ -2,7 +2,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:flutter/material.dart';
 
 class IconFontHelper {
-  static const String LOGO = 'assets/category/logo3.png';
+  static const String LOGO = 'assets/icons/icon.png';
   static const String MAIN_LOGO = 'assets/category/logo3.png';
   static const String MEATS = 'assets/category/meat.png';
   static const String PASTRIES = 'assets/category/pastries.png';

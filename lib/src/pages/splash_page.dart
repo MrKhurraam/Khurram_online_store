@@ -36,9 +36,9 @@ class _SplashPageState extends State<SplashPage> {
         color: AppColors.MAIN_COLOR,
         alignment: Alignment.center,
         child: IconFont(
-          color: Colors.white,
+          // color: Colors.white,
           iconName: IconFontHelper.LOGO,
-          size: 100,
+          size: 250,
         ),
       ),
     );

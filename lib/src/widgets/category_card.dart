@@ -59,13 +59,14 @@ class CategoryCard extends StatelessWidget {
                     CategoryIcon(
                       color: category.color,
                       iconName: category.icon,
+                      size: 25,
                     ),
                     SizedBox(
                       width: 10,
                     ),
                     Text(
                       "${category.name}",
-                      style: TextStyle(color: Colors.white, fontSize: 25),
+                      style: TextStyle(color: Colors.white, fontSize: 22, fontWeight: FontWeight.w500),
                     )
                   ],
                 ),

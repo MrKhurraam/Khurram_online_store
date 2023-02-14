@@ -30,7 +30,7 @@ class CategoryListPage extends StatelessWidget {
                   child: Text(
                     "Select a category",
                     textAlign: TextAlign.center,
-                    style: TextStyle(
+                    style: TextStyle(fontSize: 15,
                       color: Colors.black,
                     ),
                   ),

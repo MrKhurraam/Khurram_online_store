@@ -21,8 +21,15 @@ class DetailsPage extends StatefulWidget {
 }
 
 class _DetailsPageState extends State<DetailsPage> {
+
   @override
   Widget build(BuildContext context) {
+    double w = MediaQuery.of(context).size.width;
+    double h = MediaQuery.of(context).size.height;
+    print("h = ${(h/h)*100}");
+    print("h = $w");
+
+
     return Scaffold(
       body: Container(
         alignment: Alignment.center,
@@ -33,7 +40,7 @@ class _DetailsPageState extends State<DetailsPage> {
               child: Stack(
                 children: [
                   Container(
-                    height: 300,
+                    height: 0.35*h,
                     decoration: BoxDecoration(
                       image: DecorationImage(
                           image: AssetImage('assets/imgs/' +
@@ -62,11 +69,12 @@ class _DetailsPageState extends State<DetailsPage> {
                       padding: const EdgeInsets.all(20.0),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
                           CategoryIcon(
                             color: widget.subCategory.color,
                             iconName: widget.subCategory.icon,
-                            size: 50,
+                            size: 30,
                           ),
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.end,
@@ -82,7 +90,7 @@ class _DetailsPageState extends State<DetailsPage> {
                                 height: 10,
                               ),
                               Container(
-                                padding: EdgeInsets.all(10),
+                                padding: EdgeInsets.only(left: 10,right: 10,top: 5,bottom: 5),
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(20),
                                   color: widget.subCategory.color,
@@ -106,7 +114,7 @@ class _DetailsPageState extends State<DetailsPage> {
                     top: 110,
                     child: Container(
                       padding: EdgeInsets.only(
-                          left: 15, right: 15, top: 5, bottom: 8),
+                          left: 10, right: 10, top: 5, bottom: 5),
                       decoration: BoxDecoration(
                         color: AppColors.MAIN_COLOR,
                         borderRadius: BorderRadius.circular(20),
@@ -118,12 +126,12 @@ class _DetailsPageState extends State<DetailsPage> {
                           ),
                         ],
                       ),
-                      child: Row(
+                      child: Row(crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Text(
                             '3',
                             style: TextStyle(fontSize: 15, color: Colors.white),
-                          ),
+                          ),SizedBox(width: 5,),
                           Icon(
                             Icons.shopping_cart,
                             color: Colors.white,

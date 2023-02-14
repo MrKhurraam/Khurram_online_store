@@ -51,7 +51,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
                 children: List.generate(
                   _content.length,
                   (index) => Container(
-                    padding: EdgeInsets.all(40),
+                    padding: EdgeInsets.only(left: 40,top: 40,right: 40,bottom: 20),
                     margin: EdgeInsets.only(
                         left: 40, right: 40, top: 40, bottom: 20),
                     decoration: BoxDecoration(
@@ -87,7 +87,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
                                 '${_content[index].message}',
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
-                                    color: AppColors.MAIN_COLOR, fontSize: 25),
+                                    color: AppColors.MAIN_COLOR,fontSize: 15),
                               ),
                             ],
                           ),
