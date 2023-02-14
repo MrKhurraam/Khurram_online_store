@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../helpers/app_colors.dart';
 import '../helpers/icon_helper.dart';
 import '../helpers/utils.dart';
-import '../models/on_boarding_content.dart';
+import '../models/on_boarding_content_model.dart';
 import '../widgets/icon_font.dart';
 import '../widgets/main_app_bar.dart';
 import '../widgets/theme_button.dart';
@@ -41,6 +41,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
           children: [
             Expanded(
               child: PageView(
+                physics: BouncingScrollPhysics(),
                 controller: _controller,
                 onPageChanged: (index) {
                   setState(() {
@@ -84,7 +85,8 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
                                 Image.asset(
                                     'assets/imgs/${_content[index].img}.png'),
                                 SizedBox(
-                                  height: 40,
+                                  height:
+                                      index == _content.length - 1 ? 20 : 40,
                                 ),
                                 Text(
                                   '${_content[index].message}',
@@ -96,6 +98,9 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
                               ],
                             ),
                           ),
+                        ),
+                        SizedBox(
+                          height: 10,
                         ),
                         Visibility(
                           visible: index == _content.length - 1,

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 import '../models/category_model.dart';
 import '../models/category_part_model.dart';
-import '../models/on_boarding_content.dart';
+import '../models/on_boarding_content_model.dart';
 import '../models/sub_category_model.dart';
 import 'app_colors.dart';
 import 'icon_helper.dart';

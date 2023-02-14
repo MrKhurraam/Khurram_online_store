@@ -16,10 +16,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData(fontFamily: 'Raleway'),
       debugShowCheckedModeBanner: false,
-      // home: SplashPage(
-      //   duration: 3,
-      //   goToPage: WelcomePage(),
-      // ),
+
       initialRoute: '/',
       routes: {
         '/': (context) => SplashPage(duration: 3, goToPage: WelcomePage()),

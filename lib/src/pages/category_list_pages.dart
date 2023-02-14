@@ -43,6 +43,7 @@ class CategoryListPage extends StatelessWidget {
                 ),
                 Expanded(
                   child: ListView.builder(
+                    physics: BouncingScrollPhysics(),
                     padding: EdgeInsets.only(bottom: 110),
                     itemCount: categories.length,
                     itemBuilder: (BuildContext context, index) {

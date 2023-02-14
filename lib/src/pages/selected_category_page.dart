@@ -45,6 +45,7 @@ class SelectedCategoryPage extends StatelessWidget {
             ),
             Expanded(
               child: GridView.count(
+                physics: BouncingScrollPhysics(),
                 crossAxisCount: 2,
                 children: List.generate(
                   this.selectedCategory.subCategories!.length,

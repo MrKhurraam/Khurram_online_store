@@ -31,12 +31,10 @@ class _MainAppBarState extends State<MainAppBar> {
           Navigator.of(context)
               .popUntil((route) => route.settings.name == '/categorylistpage');
         },
-        child: Center(
-          child: IconFont(
-            size: 40,
-            color: widget.themeColor,
-            iconName: IconFontHelper.LOGO,
-          ),
+        child: IconFont(
+          size: 40,
+          color: widget.themeColor,
+          iconName: IconFontHelper.LOGO,
         ),
       ),
       backgroundColor: Colors.transparent,

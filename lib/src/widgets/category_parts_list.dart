@@ -22,14 +22,16 @@ class _CategoryPartListState extends State<CategoryPartList> {
         Padding(
           padding: const EdgeInsets.only(top: 20.0, left: 20, right: 20),
           child: Text(
-            'Select the part you want:',
+            'Select the part you want',
             style: TextStyle(),
           ),
         ),
         Container(
           height: 170,
-          child: ListView.builder(shrinkWrap: true,
+          child: ListView.builder(
+            shrinkWrap: true,
             scrollDirection: Axis.horizontal,
+            physics: BouncingScrollPhysics(),
             itemCount: widget.subCategory.parts.length,
             itemBuilder: (context, index) => GestureDetector(
               onTap: () {

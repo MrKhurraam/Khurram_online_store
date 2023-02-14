@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:khurram_store/src/models/cart_item_model.dart';
+import 'package:khurram_store/src/services/cart_service.dart';
 import 'package:provider/provider.dart';
 
 import '../helpers/app_colors.dart';
@@ -28,6 +30,8 @@ class _DetailsPageState extends State<DetailsPage> {
     final catSelection =
         Provider.of<CategorySelectionService>(context, listen: false);
     widget.subCategory = catSelection.selectedSubCategory;
+
+    final cartService = Provider.of<CartService>(context, listen: false);
 
     double w = MediaQuery.of(context).size.width;
     double h = MediaQuery.of(context).size.height;
@@ -132,10 +136,14 @@ class _DetailsPageState extends State<DetailsPage> {
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          Text(
-                            '3',
-                            style: TextStyle(fontSize: 15, color: Colors.white),
-                          ),
+                          Consumer<CartService>(
+                              builder: (context, cart, child) {
+                            return Text(
+                              '${cart.items.length}',
+                              style:
+                                  TextStyle(fontSize: 15, color: Colors.white),
+                            );
+                          }),
                           SizedBox(
                             width: 5,
                           ),
@@ -156,21 +164,68 @@ class _DetailsPageState extends State<DetailsPage> {
             ),
             Expanded(
               child: SingleChildScrollView(
+                physics: BouncingScrollPhysics(),
                 // fit: FlexFit.loose,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     CategoryPartList(subCategory: widget.subCategory),
                     UnitPriceWidget(),
-                    ThemeButton(
-                      onClick: () {},
-                      highlight: AppColors.MAIN_COLOR,
-                      label: 'Add to Cart',
-                      icon: Icon(
-                        Icons.shopping_cart,
-                        color: Colors.white,
-                      ),
+                    Consumer<CartService>(
+                      builder: (context, cart, child) {
+                        Widget renderedButton;
+
+                        if (!cart
+                            .isSubCategoryAddedToCart(widget.subCategory)) {
+                          renderedButton = ThemeButton(
+                            label: 'Add to Cart',
+                            icon: Icon(
+                              Icons.shopping_cart,
+                              color: Colors.white,
+                            ),
+                            onClick: () {
+                              cartService.add(
+                                CartItem(category: widget.subCategory),
+                              );
+                            },
+                          );
+                        } else {
+                          renderedButton = Container(
+                            padding: EdgeInsets.all(26),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  "Added to Cart",
+                                  style: TextStyle(
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.bold,
+                                    color: AppColors.MAIN_COLOR,
+                                  ),
+                                ),
+                                Icon(
+                                  Icons.check_circle,
+                                  size: 30,
+                                  color: AppColors.MAIN_COLOR,
+                                ),
+                              ],
+                            ),
+                          );
+                        }
+                        return renderedButton;
+                      },
                     ),
+                    // ThemeButton(
+                    //   onClick: () {
+                    //     cartService.add(CartItem(category: widget.subCategory));
+                    //   },
+                    //   highlight: AppColors.MAIN_COLOR,
+                    //   label: 'Add to Cart',
+                    //   icon: Icon(
+                    //     Icons.shopping_cart,
+                    //     color: Colors.white,
+                    //   ),
+                    // ),
                     ThemeButton(
                       onClick: () {
                         Navigator.of(context).pushNamed('/mappage');
