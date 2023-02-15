@@ -6,6 +6,8 @@ import 'package:provider/provider.dart';
 
 import '../helpers/icon_helper.dart';
 import '../helpers/utils.dart';
+import '../services/cart_service.dart';
+import '../services/category_service.dart';
 
 class SideMenuBar extends StatelessWidget {
   const SideMenuBar({Key? key}) : super(key: key);
@@ -14,6 +16,9 @@ class SideMenuBar extends StatelessWidget {
   Widget build(BuildContext context) {
     final loginService = Provider.of<LoginService>(context, listen: false);
     bool userLoggedIn = loginService.loggedInUserModel != null;
+    CategoryService categoryService =
+        Provider.of<CategoryService>(context, listen: false);
+    CartService cartService = Provider.of<CartService>(context, listen: false);
 
     return Scaffold(
       body: Container(
@@ -23,34 +28,59 @@ class SideMenuBar extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            TextButton(
-                onPressed: () async {
-                  if (userLoggedIn) {
-                    await loginService.signOut();
-                    Utils.mainAppNav.currentState?.pushNamed('/welcomepage');
-                  } else {
-                    bool success = await loginService.signInWithGoogle();
-                    if (success) {
-                      Utils.mainAppNav.currentState?.pushNamed('/mainpage');
+            Column(
+              children: [
+                TextButton(
+                  onPressed: () async {
+                    if (userLoggedIn) {
+                      await loginService.signOut();
+                      categoryService.resetCategoriesToDefaults();
+                      cartService.clearCartItem();
+                      Utils.mainAppNav.currentState!
+                          .pushReplacementNamed('/welcomepage');
+                    } else {
+                      bool success = await loginService.signInWithGoogle();
+                      if (success) {
+                        Utils.mainAppNav.currentState!.pushNamed('/mainpage');
+                      }
                     }
-                  }
-                },
-                child: Row(
-                  children: [
-                    Icon(
-                      userLoggedIn ? Icons.logout : Icons.login,
-                      color: Colors.white,
-                      size: 20,
-                    ),
-                    SizedBox(
-                      width: 10,
-                    ),
-                    Text(
-                      userLoggedIn ? "Sign Out" : 'Sign In',
-                      style: TextStyle(color: Colors.white, fontSize: 20),
-                    ),
-                  ],
-                )),
+                  },
+                  child: Row(
+                    children: [
+                      Icon(
+                        userLoggedIn ? Icons.logout : Icons.login,
+                        color: Colors.white,
+                        size: 20,
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Text(
+                        userLoggedIn ? "Sign Out" : 'Sign In',
+                        style: TextStyle(color: Colors.white, fontSize: 20),
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(height: 10),
+                Visibility(
+                    visible: !userLoggedIn,
+                    child: TextButton(
+                        onPressed: () async {
+                          Utils.mainAppNav.currentState!
+                              .pushNamed('/welcomepage');
+                        },
+                        child: Row(
+                          children: [
+                            Icon(Icons.home, color: Colors.white, size: 20),
+                            SizedBox(width: 10),
+                            Text('Welcome',
+                                style: TextStyle(
+                                    color: Colors.white, fontSize: 20))
+                          ],
+                        ))),
+              ],
+            ),
             IconFont(
               iconName: IconFontHelper.MAIN_LOGO,
               size: 70,

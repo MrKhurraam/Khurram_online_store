@@ -5,6 +5,7 @@ import 'package:khurram_store/src/helpers/icon_helper.dart';
 import 'package:khurram_store/src/helpers/utils.dart';
 import 'package:khurram_store/src/models/sub_category_model.dart';
 import 'package:khurram_store/src/services/cart_service.dart';
+import 'package:khurram_store/src/services/login_service.dart';
 import 'package:khurram_store/src/widgets/icon_font.dart';
 import 'package:provider/provider.dart';
 
@@ -16,6 +17,8 @@ class ShoppingListPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     CartService cartService = Provider.of<CartService>(context, listen: false);
+    cartService.loadCartItemFromFirebase(context);
+
     return Scaffold(
       body: Container(
         padding: EdgeInsets.only(left: 20, right: 20, bottom: 120),
@@ -40,41 +43,48 @@ class ShoppingListPage extends StatelessWidget {
                     ),
                   ),
                 ),
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(20),
-                  child: Material(
-                    child: InkWell(
-                      onTap: () {
-                        cartService.removeAll();
-                      },
-                      child: Container(
-                        padding: EdgeInsets.only(
-                            left: 20, right: 20, top: 5, bottom: 5),
-                        decoration: BoxDecoration(
-                          color: AppColors.MAIN_COLOR.withOpacity(0.2),
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        child: Row(
-                          children: [
-                            Icon(
-                              Icons.delete,
-                              // size: 20,
-                              color: AppColors.DARK_GREEN,
+                Consumer<CartService>(builder: (context, cart, child) {
+                  if (cart.items.length > 0) {
+                    return ClipRRect(
+                      borderRadius: BorderRadius.circular(20),
+                      child: Material(
+                        child: InkWell(
+                          onTap: () {
+                            cartService.removeAll(context);
+                          },
+                          child: Container(
+                            padding: EdgeInsets.only(
+                                left: 20, right: 20, top: 5, bottom: 5),
+                            decoration: BoxDecoration(
+                              color: AppColors.MAIN_COLOR.withOpacity(0.2),
+                              borderRadius: BorderRadius.circular(20),
                             ),
-                            SizedBox(
-                              width: 10,
+                            child: Row(
+                              children: [
+                                Icon(
+                                  Icons.delete,
+                                  // size: 20,
+                                  color: AppColors.DARK_GREEN,
+                                ),
+                                SizedBox(
+                                  width: 10,
+                                ),
+                                Text(
+                                  "Delete All",
+                                  style: TextStyle(
+                                      fontSize: 12,
+                                      color: AppColors.DARK_GREEN),
+                                )
+                              ],
                             ),
-                            Text(
-                              "Delete All",
-                              style: TextStyle(
-                                  fontSize: 12, color: AppColors.DARK_GREEN),
-                            )
-                          ],
+                          ),
                         ),
                       ),
-                    ),
-                  ),
-                )
+                    );
+                  }
+
+                  return SizedBox.shrink();
+                })
               ],
             ),
             Expanded(child: Consumer<CartService>(
@@ -85,8 +95,7 @@ class ShoppingListPage extends StatelessWidget {
                 if (cart.items.length > 0) {
                   cart.items.forEach(
                     (CartItem item) {
-                      SubCategory itemSubCategory =
-                          (item.category as SubCategory);
+                      SubCategory itemSubCategory = (item.subCategory);
                       print("itemSubCategory = ${itemSubCategory.price}");
                       double total =
                           itemSubCategory.price * itemSubCategory.amount;
@@ -145,7 +154,7 @@ class ShoppingListPage extends StatelessWidget {
                             )),
                             IconButton(
                                 onPressed: () {
-                                  cart.remove(item);
+                                  cart.remove(context, item);
                                 },
                                 icon: Icon(
                                   Icons.highlight_off,

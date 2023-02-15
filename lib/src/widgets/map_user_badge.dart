@@ -11,12 +11,11 @@ class MapUserBadge extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final loginService =  Provider.of<LoginService>(context, listen: false);
+    final loginService = Provider.of<LoginService>(context, listen: false);
     LoginUserModel? _userModel = loginService.loggedInUserModel;
-    String? userImg = _userModel != null? _userModel.photoUrl:'';
-    String? userName = _userModel !=null? _userModel.displayName:'';
+    String? userImg = _userModel != null ? _userModel.photoUrl : '';
+    String? userName = _userModel != null ? _userModel.displayName : '';
     bool showMapUserBadge = userImg!.isNotEmpty && userName.isNotEmpty;
-
 
     return Visibility(
       visible: showMapUserBadge,
@@ -66,7 +65,7 @@ class MapUserBadge extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    'Mi Locacion',
+                    'My Location',
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       color:

@@ -36,7 +36,10 @@ class LoginService extends ChangeNotifier {
       _userModel = LoginUserModel(
           displayName: "${userCreds.user!.displayName}",
           photoUrl: userCreds.user?.photoURL,
+          uid: userCreds.user!.uid,
           email: "${userCreds.user!.email}");
+      notifyListeners();
+      return true;
     }
     return true;
   }
@@ -44,5 +47,10 @@ class LoginService extends ChangeNotifier {
   signOut() async {
     await GoogleSignIn().signOut();
     _userModel = null;
+    notifyListeners();
+  }
+
+  bool isUserLoggedIn() {
+    return _userModel != null;
   }
 }

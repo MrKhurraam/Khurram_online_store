@@ -75,7 +75,7 @@ class _UnitPriceWidgetState extends State<UnitPriceWidget> {
               GestureDetector(
                 onTap: () {
                   if (catSelection.subCategoryAmount < MAX_VALUE) {
-                    catSelection.incrementSubCategoryAmount();
+                    catSelection.incrementSubCategoryAmount(context);
                   }
                 },
                 child: Consumer<CategorySelectionService>(
@@ -112,7 +112,7 @@ class _UnitPriceWidgetState extends State<UnitPriceWidget> {
               GestureDetector(
                 onTap: () {
                   if (catSelection.subCategoryAmount > MIN_VALUE) {
-                    catSelection.decrementSubCategoryAmount();
+                    catSelection.decrementSubCategoryAmount(context);
                   }
                 },
                 child: Consumer<CategorySelectionService>(

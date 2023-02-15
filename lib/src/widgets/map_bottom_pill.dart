@@ -69,9 +69,9 @@ class MapBottomPill extends StatelessWidget {
                               color: Colors.grey[700],
                               fontSize: 15),
                         ),
-                        Text('Venta por Libra'),
+                        Text('Khurram Market Saddar RWP'),
                         Text(
-                          'Mi Locacion',
+                          'My Location',
                           style: TextStyle(
                             color: this.subCategory.color,
                           ),
@@ -95,8 +95,8 @@ class MapBottomPill extends StatelessWidget {
               child: Row(
                 children: [
                   Container(
-                    height: 40,
-                    width: 40,
+                    height: 50,
+                    width: 50,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(50),
                       image: DecorationImage(
@@ -117,12 +117,12 @@ class MapBottomPill extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Jose Gonzalez',
+                          'Mubashir',
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                           ),
                         ),
-                        Text('Autopista Duarte \nCarretera Duarte Vieja #225'),
+                        Text('Shop No 8, Near KFC Saddar'),
                       ],
                     ),
                   ),
