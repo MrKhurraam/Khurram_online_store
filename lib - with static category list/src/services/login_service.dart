@@ -10,6 +10,10 @@ class LoginService extends ChangeNotifier {
 
   LoginUserModel? get loggedInUserModel => _userModel;
 
+  LoginService() {
+    Firebase.initializeApp();
+  }
+
   Future<bool> signInWithGoogle() async {
     // Trigger the authentication flow
     // GoogleSignIn googleSignIn = GoogleSignIn();

@@ -215,11 +215,11 @@ class ShoppingListPage extends StatelessWidget {
                         IconFont(
                           color: Colors.grey[400],
                           iconName: IconFontHelper.LOGO,
-                          size: 40,
+                          size: 30,
                         ),
                         Container(
                           width: 2,
-                          height: 80,
+                          height: 100,
                           color: Colors.grey[400],
                           margin: EdgeInsets.only(left: 20, right: 20),
                         ),
@@ -229,7 +229,7 @@ class ShoppingListPage extends StatelessWidget {
                             "Your cart has no items, Add any!",
                             style: TextStyle(
                               color: Colors.grey[400],
-                              fontSize: 25,
+                              fontSize: 30,
                             ),
                           ),
                         ),

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:khurram_store/src/services/category_service.dart';
 import 'package:provider/provider.dart';
 
 import 'src/app.dart';
@@ -14,7 +13,6 @@ void main() {
         ChangeNotifierProvider(create: (_) => LoginService()),
         ChangeNotifierProvider(create: (_) => CartService()),
         ChangeNotifierProvider(create: (_) => CategorySelectionService()),
-        ChangeNotifierProvider(create: (_) => CategoryService()),
       ],
       child: const MyApp(),
     ),

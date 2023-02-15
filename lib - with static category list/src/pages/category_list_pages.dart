@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:khurram_store/src/services/category_selection_Service.dart';
-import 'package:khurram_store/src/services/category_service.dart';
 import 'package:khurram_store/src/widgets/side_menu_bar.dart';
 import 'package:provider/provider.dart';
 
@@ -12,20 +11,12 @@ import '../widgets/category_card.dart';
 class CategoryListPage extends StatelessWidget {
   CategoryListPage({Key? key}) : super(key: key);
 
-  // fetching static data
-  // List<Category> categories = Utils.getMockedCategories();
-
-  // now data from firebase
-  List<Category> categories = [];
+  List<Category> categories = Utils.getMockedCategories();
 
   @override
   Widget build(BuildContext context) {
-    CategorySelectionService catSelection =
+    final catSelection =
         Provider.of<CategorySelectionService>(context, listen: false);
-    CategoryService catService =
-        Provider.of<CategoryService>(context, listen: false);
-    categories = catService.getCategories();
-
     return Scaffold(
       drawer: Drawer(
         child: SideMenuBar(),

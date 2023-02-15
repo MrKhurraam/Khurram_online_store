@@ -4,7 +4,6 @@ import 'package:khurram_store/src/pages/map_page.dart';
 import 'package:khurram_store/src/pages/on_boarding_page.dart';
 import 'package:khurram_store/src/pages/selected_category_page.dart';
 
-import 'extras/testInsertion.dart';
 import 'helpers/utils.dart';
 import 'pages/main_page.dart';
 import 'pages/splash_page.dart';
@@ -21,10 +20,8 @@ class MyApp extends StatelessWidget {
       navigatorKey: Utils.mainAppNav,
       initialRoute: '/',
       routes: {
-        // '/': (context) => TestInsertion(),
-        '/': (context) => SplashPage(duration: 2, goToPage: '/welcomepage'),
+        '/': (context) => SplashPage(duration: 3, goToPage: WelcomePage()),
         '/welcomepage': (context) => WelcomePage(),
-        '/testinsertion': (context) => TestInsertion(),
         '/mainpage': (context) => MainPage(),
         '/selectedcategorypage': (context) => SelectedCategoryPage(),
         '/detailspage': (context) => DetailsPage(),

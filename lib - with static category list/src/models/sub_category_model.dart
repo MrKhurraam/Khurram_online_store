@@ -25,35 +25,15 @@ class SubCategory extends Category {
       required String imgName})
       : super(name: name, icon: icon, color: color, imgName: imgName);
 
-  Map<String, dynamic> toMap() {
-    var myMapp = [];
-    int i = 0;
-    parts.forEach((element) {
-      myMapp.add(element.toMap());
-      i++;
-    });
-
-    return {
-      'parts': myMapp,
-      'price': price,
-      'unit': unit.name,
-      'name': name,
-      'icon': icon,
-      'color': color.value,
-      'imgName': imgName,
-    };
-  }
-
   factory SubCategory.fromJson(Map<String, dynamic> json) {
     return SubCategory(
         amount: 0,
         unit: WeightUnits.Lb,
         name: json['name'],
         imgName: json['imgName'],
-        // color: Color(int.parse('0xFF' + json['color'])),
-        color: Color(json['color']),
+        color: Color(int.parse('0xFF' + json['color'])),
         icon: json['icon'],
-        price: json['price'],
+        price: double.parse(json['price']),
         parts: CategoryPart.fromJsonArray(json['parts']));
   }
 
@@ -61,8 +41,7 @@ class SubCategory extends Category {
     List<SubCategory> subCategoriesFromJson = [];
 
     jsonArray.forEach((jsonData) {
-      if (jsonData != null)
-        subCategoriesFromJson.add(SubCategory.fromJson(jsonData));
+      subCategoriesFromJson.add(SubCategory.fromJson(jsonData));
     });
 
     return subCategoriesFromJson;

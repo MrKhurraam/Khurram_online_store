@@ -27,250 +27,345 @@ class Utils {
     ];
   }
 
-  static List<Category> getMockedCategories() {
-    return [
-      Category(
-        color: AppColors.MEATS,
-        name: 'Meat',
-        imgName: 'cat1',
-        icon: IconFontHelper.MEATS,
-        subCategories: [
-          // SubCategory(
-          //   color: AppColors.MEATS,
-          //   name: 'Pig',
-          //   imgName: 'cat1_1',
-          //   icon: IconFontHelper.MEATS,
-          //   parts: [
-          //     CategoryPart(
-          //         name: 'Ham', imgName: 'cat1_1_p1', isSelected: false),
-          //     CategoryPart(
-          //         name: 'Paws', imgName: 'cat1_1_p2', isSelected: false),
-          //     CategoryPart(
-          //         name: 'Bacon', imgName: 'cat1_1_p3', isSelected: false),
-          //     CategoryPart(
-          //         name: 'Loin', imgName: 'cat1_1_p4', isSelected: false),
-          //     CategoryPart(
-          //         name: 'Ribs', imgName: 'cat1_1_p5', isSelected: false),
-          //     CategoryPart(
-          //         name: 'Belly', imgName: 'cat1_1_p6', isSelected: false),
-          //   ],
-          // ),
-          SubCategory(
-            color: AppColors.MEATS,
-            name: 'Hen',
-            imgName: 'cat1_2',
-            icon: IconFontHelper.MEATS,
-            price: 10,
-            parts: [
-              CategoryPart(
-                  name: 'Ham', imgName: 'cat1_2_p1', isSelected: false),
-              CategoryPart(
-                  name: 'Paws', imgName: 'cat1_2_p2', isSelected: false),
-              CategoryPart(
-                  name: 'Bacon', imgName: 'cat1_2_p3', isSelected: false),
-              CategoryPart(
-                  name: 'Loin', imgName: 'cat1_2_p4', isSelected: false),
-              CategoryPart(
-                  name: 'Ribs', imgName: 'cat1_2_p5', isSelected: false),
-            ],
-          ),
-          SubCategory(
-            color: AppColors.MEATS,
-            name: 'Cow',
-            imgName: 'cat1_3',
-            price: 10,
-            icon: IconFontHelper.MEATS,
-            parts: [
-              CategoryPart(
-                  name: 'Jamon', imgName: 'cat1_1_p1', isSelected: false),
-              CategoryPart(
-                  name: 'Patas', imgName: 'cat1_1_p2', isSelected: false),
-              CategoryPart(
-                  name: 'Tocineta', imgName: 'cat1_1_p3', isSelected: false),
-              CategoryPart(
-                  name: 'Lomo', imgName: 'cat1_1_p4', isSelected: false),
-              CategoryPart(
-                  name: 'Costillas', imgName: 'cat1_1_p5', isSelected: false),
-              CategoryPart(
-                  name: 'Panza', imgName: 'cat1_1_p6', isSelected: false),
-            ],
-          ),
-          SubCategory(
-            color: AppColors.MEATS,
-            name: 'Turkey',
-            imgName: 'cat1_4',
-            price: 40,
-            icon: IconFontHelper.MEATS,
-            parts: [
-              CategoryPart(
-                  name: 'Jamon', imgName: 'cat1_1_p1', isSelected: false),
-              CategoryPart(
-                  name: 'Patas', imgName: 'cat1_1_p2', isSelected: false),
-              CategoryPart(
-                  name: 'Tocineta', imgName: 'cat1_1_p3', isSelected: false),
-              CategoryPart(
-                  name: 'Lomo', imgName: 'cat1_1_p4', isSelected: false),
-              CategoryPart(
-                  name: 'Costillas', imgName: 'cat1_1_p5', isSelected: false),
-              CategoryPart(
-                  name: 'Panza', imgName: 'cat1_1_p6', isSelected: false),
-            ],
-          ),
-          SubCategory(
-            color: AppColors.MEATS,
-            name: 'Goat',
-            imgName: 'cat1_5',
-            icon: IconFontHelper.MEATS,
-            parts: [
-              CategoryPart(
-                  name: 'Jamon', imgName: 'cat1_1_p1', isSelected: false),
-              CategoryPart(
-                  name: 'Patas', imgName: 'cat1_1_p2', isSelected: false),
-              CategoryPart(
-                  name: 'Tocineta', imgName: 'cat1_1_p3', isSelected: false),
-              CategoryPart(
-                  name: 'Lomo', imgName: 'cat1_1_p4', isSelected: false),
-              CategoryPart(
-                  name: 'Costillas', imgName: 'cat1_1_p5', isSelected: false),
-              CategoryPart(
-                  name: 'Panza', imgName: 'cat1_1_p6', isSelected: false),
-            ],
-          ),
-          SubCategory(
-            color: AppColors.MEATS,
-            name: 'Rabbit',
-            imgName: 'cat1_6',
-            icon: IconFontHelper.MEATS,
-            parts: [
-              CategoryPart(
-                  name: 'Jamon', imgName: 'cat1_1_p1', isSelected: false),
-              CategoryPart(
-                  name: 'Patas', imgName: 'cat1_1_p2', isSelected: false),
-              CategoryPart(
-                  name: 'Tocineta', imgName: 'cat1_1_p3', isSelected: false),
-              CategoryPart(
-                  name: 'Lomo', imgName: 'cat1_1_p4', isSelected: false),
-              CategoryPart(
-                  name: 'Costillas', imgName: 'cat1_1_p5', isSelected: false),
-              CategoryPart(
-                  name: 'Panza', imgName: 'cat1_1_p6', isSelected: false),
-            ],
-          ),
-        ],
-      ),
-      Category(
-        color: AppColors.FRUITS,
-        name: 'Fruits',
-        imgName: 'cat2',
-        icon: IconFontHelper.FRUITS,
-        subCategories: [
-          SubCategory(
-            color: AppColors.FRUITS,
-            name: 'Kiwi',
-            imgName: 'cat2_1',
-            price: 15,
-            icon: IconFontHelper.FRUITS,
-            parts: [
-              CategoryPart(
-                  name: 'Ham', imgName: 'cat2_1_desc', isSelected: false),
-              CategoryPart(
-                  name: 'Paws', imgName: 'cat2_1_desc', isSelected: false),
-              CategoryPart(
-                  name: 'Bacon', imgName: 'cat2_1_desc', isSelected: false),
-              CategoryPart(
-                  name: 'Loin', imgName: 'cat2_1_desc', isSelected: false),
-              CategoryPart(
-                  name: 'Ribs', imgName: 'cat2_1_desc', isSelected: false),
-              CategoryPart(
-                  name: 'Belly', imgName: 'cat2_1_desc', isSelected: false),
-            ],
-          ),
-          SubCategory(
-            color: AppColors.FRUITS,
-            name: 'Banana',
-            imgName: 'cat2_2',
-            price: 5,
-            icon: IconFontHelper.FRUITS,
-            parts: [
-              CategoryPart(
-                  name: 'Jamon', imgName: 'cat2_2_p1', isSelected: false),
-              CategoryPart(
-                  name: 'Patas', imgName: 'cat2_2_p2', isSelected: false),
-              CategoryPart(
-                  name: 'Tocineta', imgName: 'cat2_2_p3', isSelected: false),
-              CategoryPart(
-                  name: 'Lomo', imgName: 'cat2_2_p4', isSelected: false),
-              CategoryPart(
-                  name: 'Costillas', imgName: 'cat2_2_p5', isSelected: false),
-              CategoryPart(
-                  name: 'Panza', imgName: 'cat2_2_p6', isSelected: false),
-            ],
-          ),
-          SubCategory(
-            color: AppColors.FRUITS,
-            name: 'Gallina',
-            imgName: 'cat2_3',
-            icon: IconFontHelper.FRUITS,
-            parts: [
-              CategoryPart(
-                  name: 'Jamon', imgName: 'cat2_3_p1', isSelected: false),
-              CategoryPart(
-                  name: 'Patas', imgName: 'cat2_3_p2', isSelected: false),
-              CategoryPart(
-                  name: 'Tocineta', imgName: 'cat2_3_p3', isSelected: false),
-              CategoryPart(
-                  name: 'Lomo', imgName: 'cat2_3_p4', isSelected: false),
-              CategoryPart(
-                  name: 'Costillas', imgName: 'cat2_3_p5', isSelected: false),
-              CategoryPart(
-                  name: 'Panza', imgName: 'cat2_3_p6', isSelected: false),
-            ],
-          ),
-          SubCategory(
-            color: AppColors.FRUITS,
-            name: 'Pavo',
-            imgName: 'cat2_4',
-            icon: IconFontHelper.FRUITS,
-            parts: [
-              CategoryPart(
-                  name: 'Jamon', imgName: 'cat2_4_p1', isSelected: false),
-              CategoryPart(
-                  name: 'Patas', imgName: 'cat2_4_p2', isSelected: false),
-              CategoryPart(
-                  name: 'Tocineta', imgName: 'cat2_4_p3', isSelected: false),
-              CategoryPart(
-                  name: 'Lomo', imgName: 'cat2_4_p4', isSelected: false),
-              CategoryPart(
-                  name: 'Costillas', imgName: 'cat2_4_p5', isSelected: false),
-              CategoryPart(
-                  name: 'Panza', imgName: 'cat2_4_p6', isSelected: false),
-            ],
-          ),
-        ],
-      ),
-      Category(
-        color: AppColors.VEGS,
-        name: 'Vegetables',
-        imgName: 'cat3',
-        icon: IconFontHelper.VEGS,
-        subCategories: [],
-      ),
-      Category(
-        color: AppColors.SEEDS,
-        name: 'Seeds',
-        imgName: 'cat4',
-        icon: IconFontHelper.SEEDS,
-        subCategories: [],
-      ),
-      Category(
-        color: AppColors.SPICES,
-        name: 'Spices',
-        imgName: 'cat5',
-        icon: IconFontHelper.SPICES,
-        subCategories: [],
-      ),
-    ];
-  }
+  // static List<Category> getMockedCategories() {
+  //   return [
+  //     Category(
+  //       color: AppColors.MEATS,
+  //       name: 'Meat',
+  //       imgName: 'cat1',
+  //       icon: IconFontHelper.MEATS,
+  //       subCategories: [
+  //         SubCategory(
+  //           color: AppColors.MEATS,
+  //           name: 'Pig',
+  //           imgName: 'cat1_1',
+  //           unit: WeightUnits.Kg,
+  //           icon: IconFontHelper.MEATS,
+  //           parts: [
+  //             CategoryPart(
+  //                 name: 'Ham', imgName: 'cat1_1_p1', isSelected: false),
+  //             CategoryPart(
+  //                 name: 'Paws', imgName: 'cat1_1_p2', isSelected: false),
+  //             CategoryPart(
+  //                 name: 'Bacon', imgName: 'cat1_1_p3', isSelected: false),
+  //             CategoryPart(
+  //                 name: 'Loin', imgName: 'cat1_1_p4', isSelected: false),
+  //             CategoryPart(
+  //                 name: 'Ribs', imgName: 'cat1_1_p5', isSelected: false),
+  //             CategoryPart(
+  //                 name: 'Belly', imgName: 'cat1_1_p6', isSelected: false),
+  //           ],
+  //         ),
+  //         SubCategory(
+  //           color: AppColors.MEATS,
+  //           name: 'Hen',
+  //           imgName: 'cat1_2',
+  //           unit: WeightUnits.Kg,
+  //           icon: IconFontHelper.MEATS,
+  //           price: 10,
+  //           parts: [
+  //             CategoryPart(
+  //                 name: 'Chest', imgName: 'cat1_2_p1', isSelected: false),
+  //             CategoryPart(
+  //                 name: 'Boneless', imgName: 'cat1_2_p2', isSelected: false),
+  //             CategoryPart(
+  //                 name: 'Leg', imgName: 'cat1_2_p3', isSelected: false),
+  //             CategoryPart(
+  //                 name: 'Panjaa', imgName: 'cat1_2_p4', isSelected: false),
+  //             CategoryPart(
+  //                 name: 'Pota Kaleeji',
+  //                 imgName: 'cat1_2_p5',
+  //                 isSelected: false),
+  //           ],
+  //         ),
+  //         SubCategory(
+  //           color: AppColors.MEATS,
+  //           name: 'Cow',
+  //           imgName: 'cat1_3',
+  //           price: 10,
+  //           unit: WeightUnits.Kg,
+  //           icon: IconFontHelper.MEATS,
+  //           parts: [
+  //             CategoryPart(
+  //                 name: 'Normal ', imgName: 'cat1_3_p1', isSelected: false),
+  //             CategoryPart(
+  //                 name: 'Special', imgName: 'cat1_3_p2', isSelected: false),
+  //             CategoryPart(
+  //                 name: 'Boneless', imgName: 'cat1_3_p3', isSelected: false),
+  //             CategoryPart(
+  //                 name: 'With Bone', imgName: 'cat1_3_p4', isSelected: false),
+  //           ],
+  //         ),
+  //         SubCategory(
+  //           color: AppColors.MEATS,
+  //           name: 'Turkey',
+  //           imgName: 'cat1_4',
+  //           price: 40,
+  //           unit: WeightUnits.Kg,
+  //           icon: IconFontHelper.MEATS,
+  //           parts: [
+  //             CategoryPart(
+  //                 name: 'Boneless', imgName: 'cat1_4_p1', isSelected: false),
+  //             CategoryPart(
+  //                 name: 'Leg', imgName: 'cat1_4_p2', isSelected: false),
+  //             CategoryPart(
+  //                 name: 'Mix', imgName: 'cat1_4_p3', isSelected: false),
+  //           ],
+  //         ),
+  //         SubCategory(
+  //           color: AppColors.MEATS,
+  //           name: 'Goat',
+  //           imgName: 'cat1_5',
+  //           price: 100,
+  //           unit: WeightUnits.Kg,
+  //           icon: IconFontHelper.MEATS,
+  //           parts: [
+  //             CategoryPart(
+  //                 name: 'Chest', imgName: 'cat1_5_p1', isSelected: false),
+  //             CategoryPart(
+  //                 name: 'Mix', imgName: 'cat1_5_p2', isSelected: false),
+  //             CategoryPart(
+  //                 name: 'Special', imgName: 'cat1_5_p3', isSelected: false),
+  //           ],
+  //         ),
+  //         SubCategory(
+  //           color: AppColors.MEATS,
+  //           name: 'Rabbit',
+  //           imgName: 'cat1_6',
+  //           price: 60,
+  //           unit: WeightUnits.Kg,
+  //           icon: IconFontHelper.MEATS,
+  //           parts: [
+  //             CategoryPart(
+  //                 name: 'Mix', imgName: 'cat1_6_p1', isSelected: false),
+  //             CategoryPart(
+  //                 name: 'Leg', imgName: 'cat1_6_p2', isSelected: false),
+  //           ],
+  //         ),
+  //       ],
+  //     ),
+  //     Category(
+  //       color: AppColors.FRUITS,
+  //       name: 'Fruits',
+  //       imgName: 'cat2',
+  //       icon: IconFontHelper.FRUITS,
+  //       subCategories: [
+  //         SubCategory(
+  //           color: AppColors.FRUITS,
+  //           name: 'Kiwi',
+  //           imgName: 'cat2_1',
+  //           price: 15,
+  //           unit: WeightUnits.Kg,
+  //           icon: IconFontHelper.FRUITS,
+  //           parts: [],
+  //         ),
+  //         SubCategory(
+  //           color: AppColors.FRUITS,
+  //           name: 'Banana',
+  //           imgName: 'cat2_2',
+  //           price: 5,
+  //           unit: WeightUnits.Kg,
+  //           icon: IconFontHelper.FRUITS,
+  //           parts: [],
+  //         ),
+  //         SubCategory(
+  //           color: AppColors.FRUITS,
+  //           name: 'Grade',
+  //           imgName: 'cat2_3',
+  //           price: 10,
+  //           unit: WeightUnits.Kg,
+  //           icon: IconFontHelper.FRUITS,
+  //           parts: [],
+  //         ),
+  //         SubCategory(
+  //           color: AppColors.FRUITS,
+  //           name: 'Orange',
+  //           imgName: 'cat2_4',
+  //           price: 20,
+  //           unit: WeightUnits.Kg,
+  //           icon: IconFontHelper.FRUITS,
+  //           parts: [],
+  //         ),
+  //         SubCategory(
+  //           color: AppColors.FRUITS,
+  //           name: 'Nashpati',
+  //           imgName: 'cat2_5',
+  //           price: 30,
+  //           unit: WeightUnits.Kg,
+  //           icon: IconFontHelper.FRUITS,
+  //           parts: [],
+  //         ),
+  //       ],
+  //     ),
+  //     Category(
+  //       color: AppColors.VEGS,
+  //       name: 'Vegetables',
+  //       imgName: 'cat3',
+  //       icon: IconFontHelper.VEGS,
+  //       subCategories: [
+  //         SubCategory(
+  //           color: AppColors.VEGS,
+  //           name: 'Tamater',
+  //           imgName: 'cat3_1',
+  //           price: 40,
+  //           unit: WeightUnits.Kg,
+  //           icon: IconFontHelper.VEGS,
+  //           parts: [],
+  //         ),
+  //         SubCategory(
+  //           color: AppColors.VEGS,
+  //           name: 'Radish',
+  //           imgName: 'cat3_2',
+  //           price: 15,
+  //           unit: WeightUnits.Kg,
+  //           icon: IconFontHelper.VEGS,
+  //           parts: [],
+  //         ),
+  //         SubCategory(
+  //           color: AppColors.VEGS,
+  //           name: 'Lahsan',
+  //           unit: WeightUnits.Kg,
+  //           imgName: 'cat3_3',
+  //           price: 46,
+  //           icon: IconFontHelper.VEGS,
+  //           parts: [],
+  //         ),
+  //         SubCategory(
+  //           color: AppColors.VEGS,
+  //           name: 'Onion',
+  //           imgName: 'cat3_4',
+  //           unit: WeightUnits.Kg,
+  //           price: 33,
+  //           icon: IconFontHelper.VEGS,
+  //           parts: [],
+  //         ),
+  //       ],
+  //     ),
+  //     Category(
+  //       color: AppColors.SEEDS,
+  //       name: 'Seeds',
+  //       imgName: 'cat4',
+  //       icon: IconFontHelper.SEEDS,
+  //       subCategories: [
+  //         SubCategory(
+  //           color: AppColors.SEEDS,
+  //           name: 'Kajuu',
+  //           imgName: 'cat4_1',
+  //           price: 300,
+  //           unit: WeightUnits.Kg,
+  //           icon: IconFontHelper.SEEDS,
+  //           parts: [],
+  //         ),
+  //         SubCategory(
+  //           color: AppColors.SEEDS,
+  //           name: 'Peanuts',
+  //           imgName: 'cat4_2',
+  //           price: 700,
+  //           unit: WeightUnits.Kg,
+  //           icon: IconFontHelper.SEEDS,
+  //           parts: [],
+  //         ),
+  //         SubCategory(
+  //           color: AppColors.SEEDS,
+  //           name: 'Badaam',
+  //           imgName: 'cat4_3',
+  //           price: 1200,
+  //           unit: WeightUnits.Kg,
+  //           icon: IconFontHelper.SEEDS,
+  //           parts: [],
+  //         ),
+  //         SubCategory(
+  //           color: AppColors.SEEDS,
+  //           name: 'Pista',
+  //           imgName: 'cat4_4',
+  //           price: 4000,
+  //           unit: WeightUnits.Kg,
+  //           icon: IconFontHelper.SEEDS,
+  //           parts: [],
+  //         ),
+  //       ],
+  //     ),
+  //     Category(
+  //       color: AppColors.PASTRIES,
+  //       name: 'Sweets',
+  //       imgName: 'cat5',
+  //       icon: IconFontHelper.PASTRIES,
+  //       subCategories: [
+  //         SubCategory(
+  //           color: AppColors.PASTRIES,
+  //           name: 'Barfi',
+  //           imgName: 'cat5_1',
+  //           price: 4000,
+  //           unit: WeightUnits.Kg,
+  //           icon: IconFontHelper.PASTRIES,
+  //           parts: [],
+  //         ),
+  //         SubCategory(
+  //           color: AppColors.PASTRIES,
+  //           name: 'Galeebii',
+  //           imgName: 'cat5_2',
+  //           price: 300,
+  //           unit: WeightUnits.Kg,
+  //           icon: IconFontHelper.PASTRIES,
+  //           parts: [],
+  //         ),
+  //         SubCategory(
+  //           color: AppColors.PASTRIES,
+  //           name: 'Gulab Jaman',
+  //           imgName: 'cat5_3',
+  //           price: 1000,
+  //           unit: WeightUnits.Kg,
+  //           icon: IconFontHelper.PASTRIES,
+  //           parts: [],
+  //         ),
+  //         SubCategory(
+  //           color: AppColors.PASTRIES,
+  //           name: 'Pateesa',
+  //           imgName: 'cat5_4',
+  //           price: 1300,
+  //           unit: WeightUnits.Kg,
+  //           icon: IconFontHelper.PASTRIES,
+  //           parts: [],
+  //         ),
+  //       ],
+  //     ),
+  //     Category(
+  //       color: AppColors.SPICES,
+  //       name: 'Spices',
+  //       imgName: 'cat6',
+  //       icon: IconFontHelper.SPICES,
+  //       subCategories: [
+  //         SubCategory(
+  //           color: AppColors.SPICES,
+  //           name: 'Sabaz Mirch',
+  //           imgName: 'cat6_1',
+  //           price: 20,
+  //           unit: WeightUnits.Kg,
+  //           icon: IconFontHelper.SPICES,
+  //           parts: [],
+  //         ),
+  //         SubCategory(
+  //           color: AppColors.SPICES,
+  //           name: 'Laal Mirch',
+  //           imgName: 'cat6_2',
+  //           price: 300,
+  //           unit: WeightUnits.Kg,
+  //           icon: IconFontHelper.SPICES,
+  //           parts: [],
+  //         ),
+  //         SubCategory(
+  //           color: AppColors.SPICES,
+  //           name: 'Black Mirch',
+  //           imgName: 'cat6_3',
+  //           price: 500,
+  //           unit: WeightUnits.Kg,
+  //           icon: IconFontHelper.SPICES,
+  //           parts: [],
+  //         ),
+  //       ],
+  //     ),
+  //   ];
+  // }
 
   static String weightUnitToString(WeightUnits unit) {
     switch (unit) {
