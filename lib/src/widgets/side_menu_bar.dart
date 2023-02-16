@@ -4,6 +4,7 @@ import 'package:khurram_store/src/services/login_service.dart';
 import 'package:khurram_store/src/widgets/icon_font.dart';
 import 'package:provider/provider.dart';
 
+import '../helpers/dialogs.dart';
 import '../helpers/icon_helper.dart';
 import '../helpers/utils.dart';
 import '../services/cart_service.dart';
@@ -39,9 +40,16 @@ class SideMenuBar extends StatelessWidget {
                       Utils.mainAppNav.currentState!
                           .pushReplacementNamed('/welcomepage');
                     } else {
+                      Dialogs.SHOW_LOADING_DIALOG(context, 'Signing in');
                       bool success = await loginService.signInWithGoogle();
+                      Navigator.pop(context);
                       if (success) {
-                        Utils.mainAppNav.currentState!.pushNamed('/mainpage');
+                        // Utils.mainAppNav.currentState!.pushNamed('/mainpage');
+                        Navigator.pop(context);
+                        Utils.mainListNav.currentState!
+                            .pushReplacementNamed('/mainpage/categorylistpage');
+                      } else {
+                        Navigator.pop(context);
                       }
                     }
                   },

@@ -110,7 +110,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
                                 buttonWidth: 200,
                                 onClick: () {
                                   Utils.mainAppNav.currentState
-                                      ?.pushNamed('/mainpage');
+                                      ?.pushReplacementNamed('/mainpage');
                                 },
                                 label: 'Enter Now!',
                                 color: AppColors.DARK_GREEN,
@@ -162,7 +162,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
             ThemeButton(
               buttonWidth: 200,
               onClick: () {
-                Utils.mainAppNav.currentState?.pushNamed('/mainpage');
+                Utils.mainAppNav.currentState?.pushReplacementNamed('/mainpage');
               },
               label: 'Try Now',
             ),

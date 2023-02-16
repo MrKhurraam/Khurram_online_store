@@ -17,7 +17,7 @@ class SelectedCategoryPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final catSelection =
         Provider.of<CategorySelectionService>(context, listen: false);
-    selectedCategory = catSelection.selectedCategory;
+    selectedCategory = catSelection.selectedCategory!;
 
     final cartService = Provider.of<CartService>(context, listen: false);
 

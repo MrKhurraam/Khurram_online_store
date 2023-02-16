@@ -9,11 +9,13 @@ import 'package:khurram_store/src/services/category_service.dart';
 import 'package:khurram_store/src/services/login_service.dart';
 import 'package:provider/provider.dart';
 
+import '../helpers/dialogs.dart';
 import '../models/cart_item_model.dart';
 import '../models/category_model.dart';
 
 class CartService extends ChangeNotifier {
   final List<CartItem> _items = [];
+  bool isFetching = false;
 
   UnmodifiableListView<CartItem> get items => UnmodifiableListView(_items);
 
@@ -42,6 +44,7 @@ class CartService extends ChangeNotifier {
         .collection('shoppers')
         .doc('${loginService.loggedInUserModel!.uid}')
         .set({'cartItems': cartMap}).then((value) {
+      Navigator.pop(context);
       notifyListeners();
     });
   }
@@ -95,6 +98,11 @@ class CartService extends ChangeNotifier {
     return subCat;
   }
 
+  changeIsFetchingState(val, context) {
+    isFetching = val;
+    notifyListeners();
+  }
+
   void loadCartItemFromFirebase(BuildContext context) {
     if (_items.length > 0) {
       _items.clear();
@@ -116,7 +124,7 @@ class CartService extends ChangeNotifier {
         //get all the cart items of logged in user from document collection
 
         categoryService.getCategories().forEach((Category cat) {
-          cat.subCategories!.forEach((SubCategory subCat) {
+          cat.subCategories?.forEach((SubCategory subCat) {
             // here we get each sub cat and compare it with cart item fetched from fire-store
             if (snapshot.exists) {
               Map<String, dynamic> cartItems =
@@ -128,9 +136,8 @@ class CartService extends ChangeNotifier {
                 subCat.amount = amount;
                 // Now the subcat is added to local list which contain all cart items
                 _items.add(CartItem(subCategory: subCat));
-
                 if (categorySelectionService.selectedSubCategory != null &&
-                    categorySelectionService.selectedSubCategory.name ==
+                    categorySelectionService.selectedSubCategory?.name ==
                         subCat.name) {
                   categorySelectionService.selectedSubCategory = subCat;
                 }
@@ -138,6 +145,7 @@ class CartService extends ChangeNotifier {
             }
           });
         });
+        changeIsFetchingState(false, context);
         notifyListeners();
       });
     }

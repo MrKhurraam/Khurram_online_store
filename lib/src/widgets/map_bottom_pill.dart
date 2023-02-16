@@ -13,7 +13,7 @@ class MapBottomPill extends StatelessWidget {
   Widget build(BuildContext context) {
     final catSelection =
         Provider.of<CategorySelectionService>(context, listen: false);
-    subCategory = catSelection.selectedSubCategory;
+    subCategory = catSelection.selectedSubCategory!;
 
     return Container(
         padding: EdgeInsets.all(20),

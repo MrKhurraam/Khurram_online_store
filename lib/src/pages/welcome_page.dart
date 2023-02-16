@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../helpers/app_colors.dart';
+import '../helpers/dialogs.dart';
 import '../helpers/icon_helper.dart';
 import '../helpers/utils.dart';
 import '../services/login_service.dart';
@@ -99,9 +100,12 @@ class WelcomePage extends StatelessWidget {
                     borderColor: AppColors.MAIN_COLOR,
                     borderWidth: 4,
                     onClick: () async {
+                      Dialogs.SHOW_LOADING_DIALOG(context, 'Signing in');
                       bool success = await loginService.signInWithGoogle();
+                      Navigator.pop(context);
                       if (success) {
-                        Utils.mainAppNav.currentState?.pushNamed('/mainpage');
+                        Utils.mainAppNav.currentState
+                            ?.pushReplacementNamed('/mainpage');
                       }
                     },
                   ),

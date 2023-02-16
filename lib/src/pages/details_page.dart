@@ -9,6 +9,7 @@ import 'package:khurram_store/src/widgets/icon_font.dart';
 import 'package:provider/provider.dart';
 
 import '../helpers/app_colors.dart';
+import '../helpers/dialogs.dart';
 import '../helpers/utils.dart';
 import '../models/cart_item_model.dart';
 import '../models/sub_category_model.dart';
@@ -35,7 +36,7 @@ class _DetailsPageState extends State<DetailsPage> {
   Widget build(BuildContext context) {
     final catSelection =
         Provider.of<CategorySelectionService>(context, listen: false);
-    widget.subCategory = catSelection.selectedSubCategory;
+    widget.subCategory = catSelection.selectedSubCategory!;
 
     final cartService = Provider.of<CartService>(context, listen: false);
 
@@ -235,8 +236,11 @@ class _DetailsPageState extends State<DetailsPage> {
                               color: Colors.white,
                             ),
                             onClick: () async {
+                              Dialogs.SHOW_LOADING_DIALOG(
+                                  context, 'Signing in');
                               bool success =
                                   await loginService.signInWithGoogle();
+                              Navigator.pop(context);
                               if (success) {
                                 CartService cartService =
                                     Provider.of<CartService>(context,
@@ -275,8 +279,6 @@ class _DetailsPageState extends State<DetailsPage> {
                     if (!cart.isSubCategoryAddedToCart(widget.subCategory)) {
                       renderedButton = Consumer<CategorySelectionService>(
                           builder: (context, cat, child) {
-                        print(
-                            "cat.selectedSubCategory.amount = ${cat.selectedSubCategory.amount}");
                         return ThemeButton(
                           bottomMargin: 10,
                           label: 'Add to Cart',
@@ -285,12 +287,16 @@ class _DetailsPageState extends State<DetailsPage> {
                             color: Colors.white,
                           ),
                           onClick: () {
-                            cat.selectedSubCategory.amount != 0
-                                ? cartService.add(
-                                    context,
-                                    CartItem(subCategory: widget.subCategory),
-                                  )
-                                : null;
+                            if (cat.selectedSubCategory!.amount != 0) {
+                              Dialogs.SHOW_LOADING_DIALOG(
+                                  context, 'Adding Item to Cart');
+
+                              cartService.add(
+                                context,
+                                CartItem(subCategory: widget.subCategory),
+                              );
+                              // Navigator.pop(context);
+                            }
                           },
                         );
                       });

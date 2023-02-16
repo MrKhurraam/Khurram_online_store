@@ -8,12 +8,10 @@ import 'user_profile_header.dart';
 
 class MainAppBar extends StatefulWidget implements PreferredSizeWidget {
   MainAppBar({Key? key,
-    this.themeColor = AppColors.MAIN_COLOR,
-    this.showProfilePic = true})
+    this.themeColor = AppColors.MAIN_COLOR,})
       : super(key: key);
 
   Color? themeColor;
-  bool showProfilePic;
 
   @override
   Size get preferredSize => new Size.fromHeight(80);
@@ -42,7 +40,7 @@ class _MainAppBarState extends State<MainAppBar> {
       iconTheme: IconThemeData(color: widget.themeColor),
       centerTitle: true,
       actions: [
-        UserProfileHeader(showProfilePic: widget.showProfilePic),
+        UserProfileHeader(),
       ],
     );
   }

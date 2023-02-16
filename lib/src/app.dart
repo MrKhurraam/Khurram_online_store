@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:khurram_store/src/pages/details_page.dart';
-import 'package:khurram_store/src/pages/map_page.dart';
-import 'package:khurram_store/src/pages/on_boarding_page.dart';
-import 'package:khurram_store/src/pages/selected_category_page.dart';
-
+import 'package:khurram_store/src/services/login_service.dart';
+import 'package:provider/provider.dart';
+import 'pages/details_page.dart';
+import 'pages/map_page.dart';
+import 'pages/on_boarding_page.dart';
+import 'pages/selected_category_page.dart';
+import 'services/cart_service.dart';
 import 'extras/testInsertion.dart';
 import 'helpers/utils.dart';
 import 'pages/main_page.dart';
@@ -26,7 +28,9 @@ class MyApp extends StatelessWidget {
         '/welcomepage': (context) => WelcomePage(),
         '/testinsertion': (context) => TestInsertion(),
         '/mainpage': (context) => MainPage(),
-        '/selectedcategorypage': (context) => SelectedCategoryPage(),
+        '/selectedcategorypage': (context) {
+          return SelectedCategoryPage();
+        },
         '/detailspage': (context) => DetailsPage(),
         '/mappage': (context) => MapPage(),
         '/onboardingpage': (context) => OnBoardingPage(),

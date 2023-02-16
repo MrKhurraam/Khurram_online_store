@@ -28,7 +28,7 @@ class _UnitPriceWidgetState extends State<UnitPriceWidget> {
   Widget build(BuildContext context) {
     final catSelection =
         Provider.of<CategorySelectionService>(context, listen: false);
-    SubCategory subCategory = catSelection.selectedSubCategory;
+    SubCategory subCategory = catSelection.selectedSubCategory!;
     widget.themeColor = subCategory.color;
     widget.price = subCategory.price;
     widget.unit = subCategory.unit;

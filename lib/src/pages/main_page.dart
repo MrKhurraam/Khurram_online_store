@@ -7,6 +7,8 @@ import 'package:khurram_store/src/widgets/side_menu_bar.dart';
 import 'package:provider/provider.dart';
 
 import '../helpers/utils.dart';
+import '../services/cart_service.dart';
+import '../services/login_service.dart';
 import '../widgets/category_bottom_bar.dart';
 import '../widgets/main_app_bar.dart';
 import 'favorite_page.dart';
@@ -46,6 +48,15 @@ class MainPage extends StatelessWidget {
                           page = FavoritesPage();
                           break;
                         case '/mainpage/shoppinglistpage':
+                          LoginService loginService =
+                              Provider.of<LoginService>(context, listen: false);
+                          if (loginService.loggedInUserModel != null) {
+                            CartService cartService = Provider.of<CartService>(
+                                context,
+                                listen: false);
+
+                            cartService.isFetching = true;
+                          }
                           page = ShoppingListPage();
                           break;
                         case '/mainpage/settingpage':

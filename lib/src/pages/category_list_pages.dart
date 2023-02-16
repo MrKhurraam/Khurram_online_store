@@ -8,6 +8,7 @@ import 'package:provider/provider.dart';
 import '../helpers/utils.dart';
 import '../models/category_model.dart';
 import '../widgets/category_card.dart';
+import '../widgets/main_app_bar.dart';
 
 class CategoryListPage extends StatelessWidget {
   CategoryListPage({Key? key}) : super(key: key);
@@ -21,16 +22,16 @@ class CategoryListPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     CategorySelectionService catSelection =
-        Provider.of<CategorySelectionService>(context, listen: false);
+    Provider.of<CategorySelectionService>(context, listen: false);
     CategoryService catService =
-        Provider.of<CategoryService>(context, listen: false);
+    Provider.of<CategoryService>(context, listen: false);
     categories = catService.getCategories();
 
     return Scaffold(
-      drawer: Drawer(
-        child: SideMenuBar(),
-      ),
-      // appBar: MainAppBar(),
+      // drawer: Drawer(
+      //   child: SideMenuBar(),
+      // ),
+
       body: Container(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,

@@ -92,7 +92,7 @@ class _MapPageState extends State<MapPage> {
   Widget build(BuildContext context) {
     final catSelection =
         Provider.of<CategorySelectionService>(context, listen: false);
-    widget.subCategory = catSelection.selectedSubCategory;
+    widget.subCategory = catSelection.selectedSubCategory!;
 
     this.setSourceAndDestinationMarkerIcon(context);
 
@@ -148,7 +148,7 @@ class _MapPageState extends State<MapPage> {
               top: 0,
               left: 0,
               right: 0,
-              child: MainAppBar(showProfilePic: false),
+              child: MainAppBar(),
             ),
           ],
         ),

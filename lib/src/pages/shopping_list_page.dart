@@ -9,19 +9,37 @@ import 'package:khurram_store/src/services/login_service.dart';
 import 'package:khurram_store/src/widgets/icon_font.dart';
 import 'package:provider/provider.dart';
 
+import '../helpers/dialogs.dart';
 import '../models/cart_item_model.dart';
 
-class ShoppingListPage extends StatelessWidget {
+class ShoppingListPage extends StatefulWidget {
   const ShoppingListPage({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    CartService cartService = Provider.of<CartService>(context, listen: false);
-    cartService.loadCartItemFromFirebase(context);
+  State<ShoppingListPage> createState() => _ShoppingListPageState();
+}
 
+class _ShoppingListPageState extends State<ShoppingListPage> {
+  late CartService cartService;
+
+  @override
+  void initState() {
+    cartService = Provider.of<CartService>(context, listen: false);
+    cartService.loadCartItemFromFirebase(context);
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    cartService.isFetching = false;
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        padding: EdgeInsets.only(left: 20, right: 20, bottom: 120),
+        padding: EdgeInsets.only(left: 20, right: 15, bottom: 95),
         child: Column(
           children: [
             Row(
@@ -87,167 +105,219 @@ class ShoppingListPage extends StatelessWidget {
                 })
               ],
             ),
-            Expanded(child: Consumer<CartService>(
-              builder: (context, cart, child) {
-                List<Widget> cartItems = [];
-                double mainTotal = 0;
-
-                if (cart.items.length > 0) {
-                  cart.items.forEach(
-                    (CartItem item) {
-                      SubCategory itemSubCategory = (item.subCategory);
-                      print("itemSubCategory = ${itemSubCategory.price}");
-                      double total =
-                          itemSubCategory.price * itemSubCategory.amount;
-                      mainTotal += total;
-
-                      cartItems.add(Container(
-                        margin: EdgeInsets.only(top: 10, bottom: 10),
-                        padding: EdgeInsets.all(15),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(50),
-                          boxShadow: [
-                            BoxShadow(
-                                color: Colors.black.withOpacity(0.1),
+            Expanded(
+              child: Consumer<CartService>(
+                builder: (context, cart, child) {
+                  if (cart.isFetching) {
+                    return Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Container(
+                          padding: EdgeInsets.only(
+                              left: 20, right: 20, top: 30, bottom: 30),
+                          // height: 300,
+                          decoration: BoxDecoration(
+                            color: AppColors.MAIN_COLOR,
+                            borderRadius: BorderRadius.circular(20),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black.withOpacity(0.2),
+                                offset: Offset.zero,
                                 blurRadius: 10,
-                                offset: Offset.zero)
-                          ],
-                          color: Colors.white,
-                        ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            ClipOval(
-                              child: Image.asset(
-                                './assets/imgs/${itemSubCategory.imgName}.png',
-                                fit: BoxFit.fill,
-                                height: 50,
-                                width: 50,
                               ),
-                            ),
-                            SizedBox(
-                              width: 20,
-                            ),
-                            Expanded(
-                                child: Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  "${itemSubCategory.name}",
-                                  style:
-                                      TextStyle(color: itemSubCategory.color),
-                                ),
-                                Text(
-                                  "${itemSubCategory.amount} ${Utils.weightUnitToString(itemSubCategory.unit)}",
+                            ],
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              const CircularProgressIndicator(
+                                color: Colors.white,
+                                strokeWidth: 5,
+                              ),
+                              SizedBox(
+                                width: 20,
+                              ),
+                              Container(
+                                child: Text(
+                                  'Fetching Cart Items',
+                                  textAlign: TextAlign.center,
+                                  softWrap: true,
                                   style: TextStyle(
-                                    color: Colors.grey,
-                                  ),
-                                ),
-                                Text(
-                                  "\S${total.toStringAsFixed(2)}",
-                                  style: TextStyle(
-                                      color: itemSubCategory.color,
+                                      fontSize: 22,
+                                      color: Colors.white,
                                       fontWeight: FontWeight.bold),
                                 ),
-                              ],
-                            )),
-                            IconButton(
-                                onPressed: () {
-                                  cart.remove(context, item);
-                                },
-                                icon: Icon(
-                                  Icons.highlight_off,
-                                  size: 30,
-                                  color: AppColors.MAIN_COLOR,
-                                ))
-                          ],
-                        ),
-                      ));
-                    },
-                  );
-
-                  return Column(
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    children: [
-                      SizedBox(
-                        height: 20,
-                      ),
-                      Expanded(
-                        child: Container(
-                          padding: EdgeInsets.all(10),
-                          child: SingleChildScrollView(
-                              physics: BouncingScrollPhysics(),
-                              child: Column(children: cartItems)),
-                        ),
-                      ),
-                      Container(
-                        padding: EdgeInsets.all(10),
-                        margin: EdgeInsets.only(top: 5),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(50),
-                        ),
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: [
-                            IconFont(
-                              color: AppColors.MAIN_COLOR,
-                              iconName: IconFontHelper.LOGO,
-                              size: 30,
-                            ),
-                            SizedBox(
-                              width: 20,
-                            ),
-                            Text.rich(TextSpan(children: [
-                              TextSpan(
-                                text:
-                                    'Total \$ ${mainTotal.toStringAsFixed(2)}',
-                                style: TextStyle(
-                                    color: AppColors.MAIN_COLOR,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 25),
                               )
-                            ])),
-                          ],
-                        ),
-                      ),
-                    ],
-                  );
-                } else {
-                  return Container(
-                    // alignment: Alignment.center,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        IconFont(
-                          color: Colors.grey[400],
-                          iconName: IconFontHelper.LOGO,
-                          size: 40,
-                        ),
-                        Container(
-                          width: 2,
-                          height: 80,
-                          color: Colors.grey[400],
-                          margin: EdgeInsets.only(left: 20, right: 20),
-                        ),
-                        Flexible(
-                          fit: FlexFit.loose,
-                          child: Text(
-                            "Your cart has no items, Add any!",
-                            style: TextStyle(
-                              color: Colors.grey[400],
-                              fontSize: 25,
-                            ),
+                            ],
                           ),
                         ),
                       ],
-                    ),
-                  );
-                }
-              },
-            )),
+                    );
+                  } else {
+                    List<Widget> cartItems = [];
+                    double mainTotal = 0;
+
+                    if (cart.items.length > 0) {
+                      cart.items.forEach(
+                        (CartItem item) {
+                          SubCategory itemSubCategory = (item.subCategory);
+                          print("itemSubCategory = ${itemSubCategory.price}");
+                          double total =
+                              itemSubCategory.price * itemSubCategory.amount;
+                          mainTotal += total;
+
+                          cartItems.add(Container(
+                            margin: EdgeInsets.only(top: 10, bottom: 10),
+                            padding: EdgeInsets.all(15),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(50),
+                              boxShadow: [
+                                BoxShadow(
+                                    color: Colors.black.withOpacity(0.1),
+                                    blurRadius: 10,
+                                    offset: Offset.zero)
+                              ],
+                              color: Colors.white,
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                ClipOval(
+                                  child: Image.asset(
+                                    './assets/imgs/${itemSubCategory.imgName}.png',
+                                    fit: BoxFit.fill,
+                                    height: 50,
+                                    width: 50,
+                                  ),
+                                ),
+                                SizedBox(
+                                  width: 20,
+                                ),
+                                Expanded(
+                                    child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      "${itemSubCategory.name}",
+                                      style: TextStyle(
+                                          color: itemSubCategory.color),
+                                    ),
+                                    Text(
+                                      "${itemSubCategory.amount} ${Utils.weightUnitToString(itemSubCategory.unit)}",
+                                      style: TextStyle(
+                                        color: Colors.grey,
+                                      ),
+                                    ),
+                                    Text(
+                                      "\S${total.toStringAsFixed(2)}",
+                                      style: TextStyle(
+                                          color: itemSubCategory.color,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ],
+                                )),
+                                IconButton(
+                                    onPressed: () {
+                                      cart.remove(context, item);
+                                    },
+                                    icon: Icon(
+                                      Icons.highlight_off,
+                                      size: 30,
+                                      color: AppColors.MAIN_COLOR,
+                                    ))
+                              ],
+                            ),
+                          ));
+                        },
+                      );
+
+                      return Column(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          SizedBox(
+                            height: 20,
+                          ),
+                          Expanded(
+                            child: Container(
+                              padding: EdgeInsets.all(10),
+                              child: SingleChildScrollView(
+                                  physics: BouncingScrollPhysics(),
+                                  child: Column(children: cartItems)),
+                            ),
+                          ),
+                          Container(
+                            padding: EdgeInsets.all(10),
+                            margin: EdgeInsets.only(top: 5),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(50),
+                            ),
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                IconFont(
+                                  color: AppColors.MAIN_COLOR,
+                                  iconName: IconFontHelper.LOGO,
+                                  size: 30,
+                                ),
+                                SizedBox(
+                                  width: 20,
+                                ),
+                                Text.rich(TextSpan(children: [
+                                  TextSpan(
+                                    text:
+                                        'Total \$ ${mainTotal.toStringAsFixed(2)}',
+                                    style: TextStyle(
+                                        color: AppColors.MAIN_COLOR,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 25),
+                                  )
+                                ])),
+                              ],
+                            ),
+                          ),
+                        ],
+                      );
+                    } else
+                      // It means loading item
+
+                      //  it means there is no item in cart
+                      return Container(
+                        // alignment: Alignment.center,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            IconFont(
+                              color: Colors.grey[400],
+                              iconName: IconFontHelper.LOGO,
+                              size: 40,
+                            ),
+                            Container(
+                              width: 2,
+                              height: 80,
+                              color: Colors.grey[400],
+                              margin: EdgeInsets.only(left: 20, right: 20),
+                            ),
+                            Flexible(
+                              fit: FlexFit.loose,
+                              child: Text(
+                                "Your cart has no items, Add any!",
+                                style: TextStyle(
+                                  color: Colors.grey[400],
+                                  fontSize: 25,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      );
+                  }
+                },
+              ),
+            ),
           ],
         ),
       ),

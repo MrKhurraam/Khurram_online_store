@@ -22,17 +22,16 @@ class LoginService extends ChangeNotifier {
 
     // Obtain the auth detail from request
     final GoogleSignInAuthentication googleAuth =
-        await googleUser.authentication;
+    await googleUser.authentication;
 
     // create a new credential
     final OAuthCredential credential = GoogleAuthProvider.credential(
         accessToken: googleAuth.accessToken, idToken: googleAuth.idToken);
 
     UserCredential userCreds =
-        await FirebaseAuth.instance.signInWithCredential(credential);
+    await FirebaseAuth.instance.signInWithCredential(credential);
 
     if (userCreds != null) {
-      print("user cred = $userCreds");
       _userModel = LoginUserModel(
           displayName: "${userCreds.user!.displayName}",
           photoUrl: userCreds.user?.photoURL,
@@ -41,7 +40,7 @@ class LoginService extends ChangeNotifier {
       notifyListeners();
       return true;
     }
-    return true;
+    return false;
   }
 
   signOut() async {
