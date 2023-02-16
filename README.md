@@ -12,7 +12,7 @@ select and add them to your cart, also u can see the desired location of your ri
 
 # Samples
 
-<img src="![mainpage](https://user-images.githubusercontent.com/114870123/219338484-273a46de-5a87-4385-9229-d51cf628004f.png)" width="100"/>
+<img src="https://user-images.githubusercontent.com/114870123/219338484-273a46de-5a87-4385-9229-d51cf628004f.png" width="100"/>
 
 
 ![mainpage](https://user-images.githubusercontent.com/114870123/219338484-273a46de-5a87-4385-9229-d51cf628004f.png)
