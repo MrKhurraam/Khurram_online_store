@@ -12,9 +12,9 @@ select and add them to your cart, also u can see the desired location of your ri
 
 # Samples
 
-<img src="https://user-images.githubusercontent.com/114870123/219338484-273a46de-5a87-4385-9229-d51cf628004f.png" width="100"/>
+<img src="https://user-images.githubusercontent.com/114870123/219338484-273a46de-5a87-4385-9229-d51cf628004f.png" width="150"/><img src="https://user-images.githubusercontent.com/114870123/219338558-3b015b76-893f-454e-87e9-7840b5ba0bce.png" width="150"/>
 
-<img src="https://user-images.githubusercontent.com/114870123/219338558-3b015b76-893f-454e-87e9-7840b5ba0bce.png" width="150"/>
+
 
 ![allCategories](https://user-images.githubusercontent.com/114870123/219338558-3b015b76-893f-454e-87e9-7840b5ba0bce.png)
 
