@@ -1,16 +1,21 @@
 # khurram_store
 
-A new Flutter project.
+A complete e-commerce app completed using Flutter Framework having beautiful design and completely
+responsive.
+<b>Provider</b> is used for state management, and Firebase was used as backend data storage service.
 
-## Getting Started
+# Functionality
 
-This project is a starting point for a Flutter application.
+Each user can sign-in using google account, they can select different item according to their
+choice. App provide vast choices of items including Meat, Vegetables, Spices, Sweets etc U can
+select and add them to your cart, also u can see the desired location of your rider.
 
-A few resources to get you started if this is your first Flutter project:
+# Samples
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+<img src="assets/samples/mainpage.png" width="100"/>
+<img src="assets/samples/allCategories.png" width="100"/>
+<img src="assets/samples/subcat1.png" width="100"/>
+<img src="assets/samples/subcat2.png" width="100"/>
+<img src="assets/samples/catDetail.png" width="100"/>
+<img src="assets/samples/cart.png" width="100"/>
+<img src="assets/samples/trackRider.png" width="100"/>
